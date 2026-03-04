@@ -4,6 +4,7 @@ import type { IApiResponse } from "../Types";
 import Cart from "../assets/cart.svg";
 import "../css/home.css";
 import Context from "../Context";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [produtos, setProdutos] = useState<IProducts[] | []>([]);
@@ -147,7 +148,9 @@ const Home = () => {
             </div>
 
             <div className="product-detail-wrapper">
-              <button className="product-detail">View Details</button>
+              <Link to={`/produto/${produto.id}`} className="product-detail">
+                View Details
+              </Link>
               <button className="button-cart">
                 <img src={Cart} alt="Add to cart" />
               </button>

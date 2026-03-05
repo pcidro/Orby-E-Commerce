@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 const Home = () => {
   const [produtos, setProdutos] = useState<IProducts[] | []>([]);
   const [categoriaSelecionada, setCategoriaSelecionada] = useState("");
-  const { search } = Context();
+  const { search, addItemCart } = Context();
 
   useEffect(() => {
     async function getProducts() {
@@ -67,6 +67,10 @@ const Home = () => {
       categoriaSelecionada === "" || produto.category === categoriaSelecionada;
     return matchCategoria;
   });
+
+  function handleAddCart(produtoclicado: IProducts) {
+    addItemCart(produtoclicado);
+  }
 
   return (
     <div className="container">
@@ -151,7 +155,10 @@ const Home = () => {
               <Link to={`/produto/${produto.id}`} className="product-detail">
                 View Details
               </Link>
-              <button className="button-cart">
+              <button
+                onClick={() => handleAddCart(produto)}
+                className="button-cart"
+              >
                 <img src={Cart} alt="Add to cart" />
               </button>
             </div>

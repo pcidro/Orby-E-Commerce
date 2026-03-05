@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   const { setSearch } = Context();
+  const { cartAmount } = Context();
   const [inputValue, setInputValue] = useState("");
 
   function searchItem() {
@@ -37,7 +38,7 @@ const Header = () => {
         </div>
         <Link className="carrinho-link" to="/carrinho">
           <img className="cart" src={Cart} />
-          <span className="number-cart">2</span>
+          {cartAmount > 0 && <span className="number-cart">{cartAmount}</span>}
         </Link>
       </header>
     </div>

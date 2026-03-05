@@ -1,12 +1,12 @@
-import React from "react";
 import RoutePage from "./RoutePage";
+import { UiContextProvider } from "./Context";
 import "./css/App.css";
 
 const App = () => {
   return (
-    <div>
+    <UiContextProvider>
       <RoutePage />
-    </div>
+    </UiContextProvider>
   );
 };
 

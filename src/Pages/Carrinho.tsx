@@ -47,7 +47,7 @@ const Carrinho = () => {
 
             <div className="produto-subtotal">
               <span>SubTotal:</span>
-              <strong>{item.total}</strong>
+              <strong>{item.total.toFixed(2)}</strong>
             </div>
           </section>
         ))}

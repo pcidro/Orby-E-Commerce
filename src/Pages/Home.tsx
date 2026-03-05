@@ -5,6 +5,7 @@ import Cart from "../assets/cart.svg";
 import "../css/home.css";
 import Context from "../Context";
 import { Link } from "react-router-dom";
+import Hero from "../Components/Hero";
 
 const Home = () => {
   const [produtos, setProdutos] = useState<IProducts[] | []>([]);
@@ -73,98 +74,101 @@ const Home = () => {
   }
 
   return (
-    <div className="container">
-      <aside className="aside">
-        <h1>Categories</h1>
+    <div>
+      <Hero />
+      <div className="container">
+        <aside className="aside">
+          <h1>Categories</h1>
 
-        <div className="input-group">
-          <input
-            type="radio"
-            name="category"
-            id="all"
-            value=""
-            checked={categoriaSelecionada === ""}
-            onChange={({ target }) => setCategoriaSelecionada(target.value)}
-          />
-          <label htmlFor="all">All Products</label>
-        </div>
+          <div className="input-group">
+            <input
+              type="radio"
+              name="category"
+              id="all"
+              value=""
+              checked={categoriaSelecionada === ""}
+              onChange={({ target }) => setCategoriaSelecionada(target.value)}
+            />
+            <label htmlFor="all">All Products</label>
+          </div>
 
-        <div className="input-group">
-          <input
-            type="radio"
-            name="category"
-            id="mens-shirts"
-            value="mens-shirts"
-            checked={categoriaSelecionada === "mens-shirts"}
-            onChange={({ target }) => setCategoriaSelecionada(target.value)}
-          />
-          <label htmlFor="mens-shirts">Mens Shirts</label>
-        </div>
+          <div className="input-group">
+            <input
+              type="radio"
+              name="category"
+              id="mens-shirts"
+              value="mens-shirts"
+              checked={categoriaSelecionada === "mens-shirts"}
+              onChange={({ target }) => setCategoriaSelecionada(target.value)}
+            />
+            <label htmlFor="mens-shirts">Mens Shirts</label>
+          </div>
 
-        <div className="input-group">
-          <input
-            type="radio"
-            name="category"
-            id="mens-shoes"
-            value="mens-shoes"
-            checked={categoriaSelecionada === "mens-shoes"}
-            onChange={({ target }) => setCategoriaSelecionada(target.value)}
-          />
-          <label htmlFor="mens-shoes">Mens Shoes</label>
-        </div>
+          <div className="input-group">
+            <input
+              type="radio"
+              name="category"
+              id="mens-shoes"
+              value="mens-shoes"
+              checked={categoriaSelecionada === "mens-shoes"}
+              onChange={({ target }) => setCategoriaSelecionada(target.value)}
+            />
+            <label htmlFor="mens-shoes">Mens Shoes</label>
+          </div>
 
-        <div className="input-group">
-          <input
-            type="radio"
-            name="category"
-            id="womens-dresses"
-            value="womens-dresses"
-            checked={categoriaSelecionada === "womens-dresses"}
-            onChange={({ target }) => setCategoriaSelecionada(target.value)}
-          />
-          <label htmlFor="womens-dresses">Womens Dresses</label>
-        </div>
+          <div className="input-group">
+            <input
+              type="radio"
+              name="category"
+              id="womens-dresses"
+              value="womens-dresses"
+              checked={categoriaSelecionada === "womens-dresses"}
+              onChange={({ target }) => setCategoriaSelecionada(target.value)}
+            />
+            <label htmlFor="womens-dresses">Womens Dresses</label>
+          </div>
 
-        <div className="input-group">
-          <input
-            type="radio"
-            name="category"
-            id="womens-shoes"
-            value="womens-shoes"
-            checked={categoriaSelecionada === "womens-shoes"}
-            onChange={({ target }) => setCategoriaSelecionada(target.value)}
-          />
-          <label htmlFor="womens-shoes">Womens Shoes</label>
-        </div>
-      </aside>
+          <div className="input-group">
+            <input
+              type="radio"
+              name="category"
+              id="womens-shoes"
+              value="womens-shoes"
+              checked={categoriaSelecionada === "womens-shoes"}
+              onChange={({ target }) => setCategoriaSelecionada(target.value)}
+            />
+            <label htmlFor="womens-shoes">Womens Shoes</label>
+          </div>
+        </aside>
 
-      <ul className="products-container">
-        {produtosFiltrados.map((produto) => (
-          <li className="product" key={produto.id}>
-            <img src={produto.images[0]} alt={produto.title} />
-            <span className="category">
-              {produto.category.replace("-", " ")}
-            </span>
-            <h2>{produto.title}</h2>
+        <ul className="products-container">
+          {produtosFiltrados.map((produto) => (
+            <li className="product" key={produto.id}>
+              <img src={produto.images[0]} alt={produto.title} />
+              <span className="category">
+                {produto.category.replace("-", " ")}
+              </span>
+              <h2>{produto.title}</h2>
 
-            <div className="product-info">
-              <span className="price">${produto.price}</span>
-            </div>
+              <div className="product-info">
+                <span className="price">${produto.price}</span>
+              </div>
 
-            <div className="product-detail-wrapper">
-              <Link to={`/produto/${produto.id}`} className="product-detail">
-                View Details
-              </Link>
-              <button
-                onClick={() => handleAddCart(produto)}
-                className="button-cart"
-              >
-                <img src={Cart} alt="Add to cart" />
-              </button>
-            </div>
-          </li>
-        ))}
-      </ul>
+              <div className="product-detail-wrapper">
+                <Link to={`/produto/${produto.id}`} className="product-detail">
+                  View Details
+                </Link>
+                <button
+                  onClick={() => handleAddCart(produto)}
+                  className="button-cart"
+                >
+                  <img src={Cart} alt="Add to cart" />
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };

@@ -1,43 +1,63 @@
 import React from "react";
 import "../css/carrinho.css";
+import Context from "../Context";
+import { Link } from "react-router-dom";
 
 const Carrinho = () => {
+  const { cart, total, increaseItem, removeItemCart } = Context();
+
   return (
     <div className="container-carrinho">
       <h1>Meu carrinho</h1>
 
       <div className="lista-produtos">
-        <section className="item-cart">
-          <div className="produto-info">
-            <img
-              src="https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/airpods-4-select-202409_FV1_FMT_WHH?wid=752&hei=636&fmt=jpeg&qlt=90&.v=WnVKRVRUTFVsYThXaWkydWViL1Q3YmRudmFtWnZKZ0szeGF4cDZsczlhOWU5bTRrM1hZbmw5eCtiRXdXMENIbGg5cFlXTXBPaHRzU3RjRTMyRlg3eTd0UkdMSDBFQ1ZUdTNVa3daQmFjd1hvRUpUejJXeHlMOSsrLy9ZbWFSbmo"
-              alt="AirPods"
-            />
-            <h2 className="produto-nome">Apple AirPods 4</h2>
+        {cart.length === 0 && (
+          <div className="noproducts">
+            <p> Ops! Seu carrinho está vazio!</p>
+            <Link to="/">Acessar produtos</Link>
           </div>
+        )}
+        {cart.map((item) => (
+          <section key={item.id} className="item-cart">
+            <div className="produto-info">
+              <img src={item.images[0]} alt="AirPods" />
+              <h2 className="produto-nome">{item.title}</h2>
+            </div>
 
-          <div className="produto-preco">
-            <span>Preço:</span>
-            <strong>R$ 1.000,00</strong>
-          </div>
+            <div className="produto-preco">
+              <span>Price:</span>
+              <strong>{item.price}</strong>
+            </div>
 
-          <div className="flex-cart">
-            <button className="btn-cart minus">-</button>
-            <span className="quantity">1</span>
-            <button className="btn-cart plus">+</button>
-          </div>
+            <div className="flex-cart">
+              <button
+                onClick={() => removeItemCart(item)}
+                className="btn-cart minus"
+              >
+                -
+              </button>
+              <span className="quantity">{item.amount}</span>
+              <button
+                onClick={() => increaseItem(item.id)}
+                className="btn-cart plus"
+              >
+                +
+              </button>
+            </div>
 
-          <div className="produto-subtotal">
-            <span>SubTotal:</span>
-            <strong>R$ 1.000,00</strong>
-          </div>
-        </section>
+            <div className="produto-subtotal">
+              <span>SubTotal:</span>
+              <strong>{item.total}</strong>
+            </div>
+          </section>
+        ))}
       </div>
-
-      <div className="resumo-carrinho">
-        <strong className="total">Total:</strong>
-        <span className="valor-total">R$ 1.000,00</span>
-      </div>
+      {cart.length !== 0 && (
+        <div className="resumo-carrinho">
+          <strong className="total">Total:</strong>
+          <span className="valor-total">{total}</span>
+        </div>
+      )}
     </div>
   );
 };

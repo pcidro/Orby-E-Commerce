@@ -8,6 +8,9 @@ interface iUiContext {
   cartAmount: number;
   setCart: React.Dispatch<React.SetStateAction<cartProps[]>>;
   addItemCart: (newItem: IProducts) => void;
+  removeItemCart: (product: cartProps) => void;
+  total: string;
+  increaseItem: (id: number) => void;
 }
 
 interface cartProps {
@@ -32,6 +35,7 @@ export const Context = () => {
 export const UiContextProvider = ({ children }: PropsWithChildren) => {
   const [search, setSearch] = React.useState("");
   const [cart, setCart] = React.useState<cartProps[]>([]);
+  const [total, setTotal] = React.useState("");
 
   function addItemCart(newItem: IProducts) {
     const indexItem = cart.findIndex((item) => item.id === newItem.id);
@@ -43,6 +47,7 @@ export const UiContextProvider = ({ children }: PropsWithChildren) => {
         total: (cartList[indexItem].amount + 1) * cartList[indexItem].price,
       };
       setCart(cartList);
+      totalResultCart(cartList);
       return;
     }
     const data = {
@@ -51,6 +56,48 @@ export const UiContextProvider = ({ children }: PropsWithChildren) => {
       total: newItem.price,
     };
     setCart((products) => [...products, data]);
+    totalResultCart([...cart, data]);
+  }
+
+  function increaseItem(id: number) {
+    const newCart = cart.map((item) => {
+      if (item.id === id) {
+        const amount = item.amount + 1;
+        return {
+          ...item,
+          amount,
+          total: amount * item.price,
+        };
+      }
+      return item;
+    });
+    setCart(newCart);
+    totalResultCart(newCart);
+  }
+
+  function removeItemCart(product: cartProps) {
+    const indexItem = cart.findIndex((item) => item.id === product.id);
+    if (cart[indexItem].amount > 1) {
+      const newCart = [...cart];
+      newCart[indexItem] = {
+        ...newCart[indexItem],
+        amount: newCart[indexItem].amount - 1,
+        total: (newCart[indexItem].amount - 1) * newCart[indexItem].price,
+      };
+      setCart(newCart);
+      totalResultCart(newCart);
+      return;
+    }
+
+    const removeItem = cart.filter((item) => item.id !== product.id);
+    setCart(removeItem);
+    totalResultCart(removeItem);
+  }
+
+  function totalResultCart(produtos: cartProps[]) {
+    const myCart = produtos;
+    const result = myCart.reduce((acc, item) => acc + item.total, 0).toFixed(2);
+    setTotal(result);
   }
 
   return (
@@ -62,6 +109,9 @@ export const UiContextProvider = ({ children }: PropsWithChildren) => {
         setCart,
         cartAmount: cart.length,
         addItemCart,
+        total,
+        removeItemCart,
+        increaseItem,
       }}
     >
       {children}

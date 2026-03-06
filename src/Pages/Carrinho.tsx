@@ -20,7 +20,7 @@ const Carrinho = () => {
         {cart.map((item) => (
           <section key={item.id} className="item-cart">
             <div className="produto-info">
-              <img src={item.images[0]} alt="AirPods" />
+              <img src={item.image} alt="AirPods" />
               <h2 className="produto-nome">{item.title}</h2>
             </div>
 

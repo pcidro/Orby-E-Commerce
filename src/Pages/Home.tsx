@@ -6,6 +6,8 @@ import "../css/home.css";
 import Context from "../Context";
 import { Link } from "react-router-dom";
 import Hero from "../Components/Hero";
+import Perks from "../Components/Perks";
+import toast from "react-hot-toast";
 
 const Home = () => {
   const [produtos, setProdutos] = useState<IProducts[] | []>([]);
@@ -14,50 +16,23 @@ const Home = () => {
 
   useEffect(() => {
     async function getProducts() {
-      if (search) {
-        const res = await fetch(
-          `https://dummyjson.com/products/search?q=${search}`,
-        );
+      try {
+        const res = await fetch("/sneakers.json");
         const data: IApiResponse = await res.json();
-        setProdutos(data.products);
-      } else {
-        const [
-          womenShoes,
-          womenDresses,
-          menShoes,
-          mensShirts,
-          mensWatches,
-          womensWatches,
-        ]: IApiResponse[] = await Promise.all([
-          fetch("https://dummyjson.com/products/category/womens-shoes").then(
-            (r) => r.json(),
-          ),
-          fetch("https://dummyjson.com/products/category/womens-dresses").then(
-            (r) => r.json(),
-          ),
-          fetch("https://dummyjson.com/products/category/mens-shoes").then(
-            (r) => r.json(),
-          ),
-          fetch("https://dummyjson.com/products/category/mens-shirts").then(
-            (r) => r.json(),
-          ),
-          fetch("https://dummyjson.com/products/category/mens-watches").then(
-            (r) => r.json(),
-          ),
-          fetch("https://dummyjson.com/products/category/womens-watches").then(
-            (r) => r.json(),
-          ),
-        ]);
-
-        const allProducts: IProducts[] = [
-          ...womenShoes.products,
-          ...womenDresses.products,
-          ...menShoes.products,
-          ...mensShirts.products,
-          ...mensWatches.products,
-          ...womensWatches.products,
-        ];
-        setProdutos(allProducts);
+        if (search) {
+          const searchTerm = search.trim().toLowerCase();
+          const produtosItens = data.products.filter(
+            (produto) =>
+              produto.title.toLowerCase().includes(searchTerm) ||
+              produto.category.toLowerCase().includes(searchTerm) ||
+              produto.brand.toLowerCase().includes(searchTerm),
+          );
+          setProdutos(produtosItens);
+        } else {
+          setProdutos(data.products);
+        }
+      } catch (error) {
+        console.log(error);
       }
     }
     getProducts();
@@ -65,20 +40,22 @@ const Home = () => {
 
   const produtosFiltrados = produtos?.filter((produto) => {
     const matchCategoria =
-      categoriaSelecionada === "" || produto.category === categoriaSelecionada;
+      categoriaSelecionada === "" || produto.brand === categoriaSelecionada;
     return matchCategoria;
   });
 
   function handleAddCart(produtoclicado: IProducts) {
+    toast.success("Produto adicionado ao carrinho!");
     addItemCart(produtoclicado);
   }
 
   return (
     <div>
       <Hero />
+      <Perks />
       <div className="container">
         <aside className="aside">
-          <h1>Categories</h1>
+          <h1>Categorias</h1>
 
           <div className="input-group">
             <input
@@ -89,85 +66,103 @@ const Home = () => {
               checked={categoriaSelecionada === ""}
               onChange={({ target }) => setCategoriaSelecionada(target.value)}
             />
-            <label htmlFor="all">All Products</label>
+            <label htmlFor="all">Todos os produtos</label>
           </div>
 
           <div className="input-group">
             <input
               type="radio"
               name="category"
-              id="mens-shirts"
-              value="mens-shirts"
-              checked={categoriaSelecionada === "mens-shirts"}
+              id="nike"
+              value="Nike"
+              checked={categoriaSelecionada === "Nike"}
               onChange={({ target }) => setCategoriaSelecionada(target.value)}
             />
-            <label htmlFor="mens-shirts">Mens Shirts</label>
+            <label htmlFor="nike">Nike</label>
           </div>
 
           <div className="input-group">
             <input
               type="radio"
               name="category"
-              id="mens-shoes"
-              value="mens-shoes"
-              checked={categoriaSelecionada === "mens-shoes"}
+              id="adidas"
+              value="Adidas"
+              checked={categoriaSelecionada === "Adidas"}
               onChange={({ target }) => setCategoriaSelecionada(target.value)}
             />
-            <label htmlFor="mens-shoes">Mens Shoes</label>
+            <label htmlFor="adidas">Adidas</label>
           </div>
 
           <div className="input-group">
             <input
               type="radio"
               name="category"
-              id="womens-dresses"
-              value="womens-dresses"
-              checked={categoriaSelecionada === "womens-dresses"}
+              id="puma"
+              value="Puma"
+              checked={categoriaSelecionada === "Puma"}
               onChange={({ target }) => setCategoriaSelecionada(target.value)}
             />
-            <label htmlFor="womens-dresses">Womens Dresses</label>
+            <label htmlFor="puma">Puma</label>
           </div>
 
           <div className="input-group">
             <input
               type="radio"
               name="category"
-              id="womens-shoes"
-              value="womens-shoes"
-              checked={categoriaSelecionada === "womens-shoes"}
+              id="jordan"
+              value="Jordan"
+              checked={categoriaSelecionada === "Jordan"}
               onChange={({ target }) => setCategoriaSelecionada(target.value)}
             />
-            <label htmlFor="womens-shoes">Womens Shoes</label>
+            <label htmlFor="womens-shoes">Jordan</label>
+          </div>
+
+          <div className="input-group">
+            <input
+              type="radio"
+              name="category"
+              id="converse"
+              value="Converse"
+              checked={categoriaSelecionada === "Converse"}
+              onChange={({ target }) => setCategoriaSelecionada(target.value)}
+            />
+            <label htmlFor="converse">Converse</label>
           </div>
         </aside>
 
-        <ul className="products-container">
-          {produtosFiltrados.map((produto) => (
-            <li className="product" key={produto.id}>
-              <img src={produto.images[0]} alt={produto.title} />
-              <span className="category">
-                {produto.category.replace("-", " ")}
-              </span>
-              <h2>{produto.title}</h2>
+        <div>
+          <h1>Produtos em destaque</h1>
+          <ul className="products-container">
+            {produtosFiltrados.map((produto) => (
+              <li className="product" key={produto.id}>
+                <img src={produto.image} alt={produto.title} />
+                <span className="category">
+                  {produto.category.replace("-", " ")}
+                </span>
+                <h2>{produto.title}</h2>
 
-              <div className="product-info">
-                <span className="price">${produto.price}</span>
-              </div>
+                <div className="product-info">
+                  <span className="price">${produto.price}</span>
+                </div>
 
-              <div className="product-detail-wrapper">
-                <Link to={`/produto/${produto.id}`} className="product-detail">
-                  View Details
-                </Link>
-                <button
-                  onClick={() => handleAddCart(produto)}
-                  className="button-cart"
-                >
-                  <img src={Cart} alt="Add to cart" />
-                </button>
-              </div>
-            </li>
-          ))}
-        </ul>
+                <div className="product-detail-wrapper">
+                  <Link
+                    to={`/produto/${produto.id}`}
+                    className="product-detail"
+                  >
+                    Ver Detalhes
+                  </Link>
+                  <button
+                    onClick={() => handleAddCart(produto)}
+                    className="button-cart"
+                  >
+                    <img src={Cart} alt="Add to cart" />
+                  </button>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );

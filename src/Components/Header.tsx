@@ -25,7 +25,7 @@ const Header = () => {
             className="input-header"
             type="text"
             onChange={({ target }) => setInputValue(target.value)}
-            placeholder="Search for a product..."
+            placeholder="Busque um sneaker..."
             onKeyDown={(e) => e.key === "Enter" && searchItem()}
           />
           <button

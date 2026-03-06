@@ -5,9 +5,9 @@ const Hero = () => {
   return (
     <section className="hero">
       <div className="hero-content">
-        <h1 className="hero-title">New Collection 2026</h1>
-        <p className="hero-subtitle">Discover the latest sneakers</p>
-        <button className="hero-btn">Shop Now</button>
+        <h1 className="hero-title">Nova Coleção 2026</h1>
+        <p className="hero-subtitle">Descubra os mais novos Sneakers</p>
+        <button className="hero-btn">Compre agora</button>
       </div>
     </section>
   );

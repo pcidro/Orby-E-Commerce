@@ -18,7 +18,7 @@ interface cartProps {
   title: string;
   description: string;
   category: string;
-  images: string[];
+  image: string;
   price: number;
   amount: number;
   total: number;

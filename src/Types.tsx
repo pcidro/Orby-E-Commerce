@@ -1,24 +1,17 @@
-export interface Reviews {
-  rating: number;
-  comment: string;
-  date: string;
-  reviewerName: string;
-}
-
 export interface IProducts {
   id: number;
   title: string;
   description: string;
   category: string;
   price: number;
-  discountPercentage: number;
-  rating: number;
   brand: string;
-  images: string[];
-  shippingInformation?: string;
-  warrantyInformation?: string;
-  availabilityStatus?: string;
-  reviews?: Reviews[];
+  image: string;
+  warrantyInformation: string;
+  shippingInformation: string;
+  availabilityStatus: string;
+  color: string;
+  size: string;
+  releaseYear: number;
 }
 
 export interface IApiResponse {

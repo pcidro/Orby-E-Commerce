@@ -131,7 +131,7 @@ const Home = () => {
         </aside>
 
         <div>
-          <h1>Produtos em destaque</h1>
+          <h1 className="main-title">Produtos em destaque</h1>
           <ul className="products-container">
             {produtosFiltrados.map((produto) => (
               <li className="product" key={produto.id}>

@@ -5,6 +5,7 @@ import type { IApiResponse } from "../Types";
 import "../css/productdetails.css";
 import Cart from "../assets/cart.svg";
 import Context from "../Context";
+import toast from "react-hot-toast";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -28,6 +29,7 @@ const ProductDetails = () => {
 
   function handleAddCart(produclicado: IProducts) {
     addItemCart(produclicado);
+    toast.success("Produto adicionado ao carrinho!");
     navigate("../carrinho");
   }
   return (

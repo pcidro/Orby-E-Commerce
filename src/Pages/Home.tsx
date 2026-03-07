@@ -54,115 +54,34 @@ const Home = () => {
       <Hero />
       <Perks />
       <div className="container">
-        <aside className="aside">
-          <h1>Categorias</h1>
+        <h1 className="main-title">Produtos em destaque</h1>
+        <ul className="products-container">
+          {produtos.map((produto) => (
+            <li className="product" key={produto.id}>
+              <img src={produto.image} alt={produto.title} />
+              <span className="category">
+                {produto.category.replace("-", " ")}
+              </span>
+              <h2>{produto.title}</h2>
 
-          <div className="input-group">
-            <input
-              type="radio"
-              name="category"
-              id="all"
-              value=""
-              checked={categoriaSelecionada === ""}
-              onChange={({ target }) => setCategoriaSelecionada(target.value)}
-            />
-            <label htmlFor="all">Todos os produtos</label>
-          </div>
+              <div className="product-info">
+                <span className="price">${produto.price}</span>
+              </div>
 
-          <div className="input-group">
-            <input
-              type="radio"
-              name="category"
-              id="nike"
-              value="Nike"
-              checked={categoriaSelecionada === "Nike"}
-              onChange={({ target }) => setCategoriaSelecionada(target.value)}
-            />
-            <label htmlFor="nike">Nike</label>
-          </div>
-
-          <div className="input-group">
-            <input
-              type="radio"
-              name="category"
-              id="adidas"
-              value="Adidas"
-              checked={categoriaSelecionada === "Adidas"}
-              onChange={({ target }) => setCategoriaSelecionada(target.value)}
-            />
-            <label htmlFor="adidas">Adidas</label>
-          </div>
-
-          <div className="input-group">
-            <input
-              type="radio"
-              name="category"
-              id="puma"
-              value="Puma"
-              checked={categoriaSelecionada === "Puma"}
-              onChange={({ target }) => setCategoriaSelecionada(target.value)}
-            />
-            <label htmlFor="puma">Puma</label>
-          </div>
-
-          <div className="input-group">
-            <input
-              type="radio"
-              name="category"
-              id="jordan"
-              value="Jordan"
-              checked={categoriaSelecionada === "Jordan"}
-              onChange={({ target }) => setCategoriaSelecionada(target.value)}
-            />
-            <label htmlFor="womens-shoes">Jordan</label>
-          </div>
-
-          <div className="input-group">
-            <input
-              type="radio"
-              name="category"
-              id="converse"
-              value="Converse"
-              checked={categoriaSelecionada === "Converse"}
-              onChange={({ target }) => setCategoriaSelecionada(target.value)}
-            />
-            <label htmlFor="converse">Converse</label>
-          </div>
-        </aside>
-
-        <div>
-          <h1 className="main-title">Produtos em destaque</h1>
-          <ul className="products-container">
-            {produtosFiltrados.map((produto) => (
-              <li className="product" key={produto.id}>
-                <img src={produto.image} alt={produto.title} />
-                <span className="category">
-                  {produto.category.replace("-", " ")}
-                </span>
-                <h2>{produto.title}</h2>
-
-                <div className="product-info">
-                  <span className="price">${produto.price}</span>
-                </div>
-
-                <div className="product-detail-wrapper">
-                  <Link
-                    to={`/produto/${produto.id}`}
-                    className="product-detail"
-                  >
-                    Ver Detalhes
-                  </Link>
-                  <button
-                    onClick={() => handleAddCart(produto)}
-                    className="button-cart"
-                  >
-                    <img src={Cart} alt="Add to cart" />
-                  </button>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
+              <div className="product-detail-wrapper">
+                <Link to={`/produto/${produto.id}`} className="product-detail">
+                  Ver Detalhes
+                </Link>
+                <button
+                  onClick={() => handleAddCart(produto)}
+                  className="button-cart"
+                >
+                  <img src={Cart} alt="Add to cart" />
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );

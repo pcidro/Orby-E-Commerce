@@ -1,5 +1,6 @@
 import React, { type PropsWithChildren } from "react";
 import type { IProducts } from "./Types";
+import toast from "react-hot-toast";
 
 interface iUiContext {
   search: string;
@@ -91,6 +92,7 @@ export const UiContextProvider = ({ children }: PropsWithChildren) => {
 
     const removeItem = cart.filter((item) => item.id !== product.id);
     setCart(removeItem);
+    toast.error("Produto removido do carrinho!");
     totalResultCart(removeItem);
   }
 

@@ -1,6 +1,10 @@
 import React, { type PropsWithChildren } from "react";
 import type { IProducts } from "./Types";
+import { auth } from "./firebase";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import toast from "react-hot-toast";
+import type { User } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 interface iUiContext {
   search: string;
@@ -11,7 +15,9 @@ interface iUiContext {
   addItemCart: (newItem: IProducts) => void;
   removeItemCart: (product: cartProps) => void;
   total: string;
+  usuario: User | null;
   increaseItem: (id: number) => void;
+  handleLogout: () => void;
 }
 
 interface cartProps {
@@ -25,6 +31,8 @@ interface cartProps {
   total: number;
 }
 
+type usuarioProps = null | User;
+
 const ContextUi = React.createContext<iUiContext | null>(null);
 
 export const Context = () => {
@@ -34,9 +42,23 @@ export const Context = () => {
 };
 
 export const UiContextProvider = ({ children }: PropsWithChildren) => {
+  const [usuario, setUsuario] = React.useState<usuarioProps>(null);
+  const [loading, setLoading] = React.useState(true);
   const [search, setSearch] = React.useState("");
   const [cart, setCart] = React.useState<cartProps[]>([]);
   const [total, setTotal] = React.useState("");
+
+  React.useEffect(() => {
+    const login = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUsuario(user);
+      } else {
+        setUsuario(null);
+      }
+      setLoading(false);
+    });
+    return () => login();
+  }, []);
 
   function addItemCart(newItem: IProducts) {
     const indexItem = cart.findIndex((item) => item.id === newItem.id);
@@ -74,6 +96,14 @@ export const UiContextProvider = ({ children }: PropsWithChildren) => {
     });
     setCart(newCart);
     totalResultCart(newCart);
+  }
+
+  async function handleLogout() {
+    try {
+      await signOut(auth);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   function removeItemCart(product: cartProps) {
@@ -114,6 +144,8 @@ export const UiContextProvider = ({ children }: PropsWithChildren) => {
         total,
         removeItemCart,
         increaseItem,
+        usuario,
+        handleLogout,
       }}
     >
       {children}

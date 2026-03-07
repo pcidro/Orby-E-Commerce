@@ -5,10 +5,10 @@ import Cart from "../assets/cart2.svg";
 import searchIcon from "../assets/search.svg";
 import Context from "../Context";
 import { Link } from "react-router-dom";
+import User from "../assets/user.svg";
 
 const Header = () => {
-  const { setSearch } = Context();
-  const { cartAmount } = Context();
+  const { setSearch, cartAmount, usuario, handleLogout } = Context();
   const [inputValue, setInputValue] = useState("");
 
   function searchItem() {
@@ -36,10 +36,24 @@ const Header = () => {
             <img src={searchIcon} />
           </button>
         </div>
+        {usuario ? (
+          <>
+            <div>
+              <p>Olá, {usuario.displayName}!</p>
+            </div>
+          </>
+        ) : (
+          <Link to="/login" className="user-header-login">
+            <img src={User} />
+            Entrar
+          </Link>
+        )}
+
         <Link className="carrinho-link" to="/carrinho">
           <img className="cart" src={Cart} />
           {cartAmount > 0 && <span className="number-cart">{cartAmount}</span>}
         </Link>
+        {usuario && <button onClick={handleLogout}>Sair</button>}
       </header>
     </div>
   );

@@ -1,8 +1,8 @@
 import React from "react";
 import Truck from "../assets/truck.png";
-import Devolucao from "../assets/devolucao.png";
+import Devolucao from "../assets/30days.png";
 import Secure from "../assets/secure.png";
-import Parcelamento from "../assets/12x.png";
+import Parcelamento from "../assets/parcelamento.png";
 import "../css/perks.css";
 
 const Perks = () => {

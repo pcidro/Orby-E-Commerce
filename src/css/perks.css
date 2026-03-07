@@ -29,8 +29,8 @@
 }
 
 .perk-item:hover {
-  border-color: #6de73c;
-  box-shadow: 0 4px 16px rgba(4, 214, 57, 0.1);
+  border-color: #7960f4;
+  box-shadow: 0 4px 16px rgba(40, 1, 58, 0.1);
   transform: translateY(-4px);
 }
 

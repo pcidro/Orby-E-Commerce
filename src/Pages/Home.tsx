@@ -9,7 +9,7 @@ import Hero from "../Components/Hero";
 import Perks from "../Components/Perks";
 import toast from "react-hot-toast";
 import arrowRight from "../assets/arrowright.svg";
-import MainBannerhome from "../Components/mainBannerhome";
+import MainBannerhome from "../Components/MainBannerhome";
 
 const Home = () => {
   const [produtos, setProdutos] = useState<IProducts[] | []>([]);
@@ -46,7 +46,7 @@ const Home = () => {
     getProducts();
   }, [search]);
 
-  const FeaturedProducts = produtos?.slice(0, 5);
+  const FeaturedProducts = produtos?.slice(0, 6);
 
   function handleAddCart(produtoclicado: IProducts) {
     toast.success("Produto adicionado ao carrinho!");

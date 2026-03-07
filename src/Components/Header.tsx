@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Orby from "../assets/orby.png";
+import Orby from "../assets/Orbylogo.png";
 import "../css/header.css";
-import Cart from "../assets/cart.svg";
+import Cart from "../assets/cart2.svg";
 import searchIcon from "../assets/search.svg";
 import Context from "../Context";
 import { Link } from "react-router-dom";

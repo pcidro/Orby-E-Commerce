@@ -13,6 +13,7 @@ import Footer from "../Components/Footer";
 
 const Home = () => {
   const [produtos, setProdutos] = useState<IProducts[] | []>([]);
+
   const { search } = Context();
   const ProductsRef = useRef<null | HTMLUListElement>(null);
   const scrollToSection = () => {

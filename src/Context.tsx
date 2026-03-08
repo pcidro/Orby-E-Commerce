@@ -47,6 +47,7 @@ export const UiContextProvider = ({ children }: PropsWithChildren) => {
   const [search, setSearch] = React.useState("");
   const [cart, setCart] = React.useState<cartProps[]>([]);
   const [total, setTotal] = React.useState("");
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     const login = onAuthStateChanged(auth, (user) => {
@@ -101,6 +102,7 @@ export const UiContextProvider = ({ children }: PropsWithChildren) => {
   async function handleLogout() {
     try {
       await signOut(auth);
+      navigate("/login");
     } catch (error) {
       console.error(error);
     }

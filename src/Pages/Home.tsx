@@ -8,6 +8,8 @@ import Perks from "../Components/Perks";
 import MainBannerhome from "../Components/MainBannerhome";
 import ShopBy from "../Components/ShopBy";
 import FeaturedProducts from "../Components/FeaturedProducts";
+import NewProducts from "../Components/NewProducts";
+import Footer from "../Components/Footer";
 
 const Home = () => {
   const [produtos, setProdutos] = useState<IProducts[] | []>([]);
@@ -44,6 +46,7 @@ const Home = () => {
   }, [search]);
 
   const FeaturedProductsArray = produtos?.slice(0, 6);
+  const newProductsArray = produtos?.slice(6, 12);
 
   return (
     <>
@@ -55,6 +58,8 @@ const Home = () => {
         featuredProductsArray={FeaturedProductsArray}
       />
       <MainBannerhome />
+      <NewProducts newProductsArray={newProductsArray} />
+      <Footer />
     </>
   );
 };

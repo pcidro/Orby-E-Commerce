@@ -38,7 +38,8 @@ const Header = () => {
         </div>
         {usuario ? (
           <>
-            <div>
+            <div className="header-info">
+              <img src={User} alt="" />
               <p>Olá, {usuario.displayName}!</p>
             </div>
           </>

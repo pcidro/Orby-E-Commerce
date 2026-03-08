@@ -65,6 +65,13 @@
   object-fit: contain;
 }
 
+.header-info {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: "Inter", sans-serif;
+}
+
 .input-header {
   font-family: "Inter", sans-serif;
   width: 100%;

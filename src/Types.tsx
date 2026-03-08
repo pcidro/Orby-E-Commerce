@@ -16,7 +16,4 @@ export interface IProducts {
 
 export interface IApiResponse {
   products: IProducts[];
-  total: number;
-  skip: number;
-  limit: number;
 }

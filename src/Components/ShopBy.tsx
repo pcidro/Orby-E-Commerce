@@ -15,8 +15,12 @@ const ShopBy = () => {
       <h1>Compre por marca</h1>
       <ul className="brands-grid">
         {brands.map((brand) => (
-          <li className="brand-item">
-            <Link key={brand.name} className="brand-link">
+          <li key={brand.name} className="brand-item">
+            <Link
+              to={`/brand/${brand.name.toLowerCase()}`}
+              key={brand.name}
+              className="brand-link"
+            >
               <img src={brand.image} alt={brand.name} />
               <span>{brand.name}</span>
             </Link>

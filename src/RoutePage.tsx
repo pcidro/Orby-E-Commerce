@@ -5,6 +5,7 @@ import Carrinho from "./Pages/Carrinho";
 import Login from "./Pages/Login/Login";
 import ProductDetails from "./Pages/ProductDetails";
 import Footer from "./Components/Footer";
+import BrandPage from "./Pages/BrandPage";
 
 const RoutePage = () => {
   return (
@@ -15,6 +16,7 @@ const RoutePage = () => {
         <Route path="/carrinho" element={<Carrinho />} />
         <Route path="/produto/:id" element={<ProductDetails />} />
         <Route path="/login/*" element={<Login />} />
+        <Route path="/brand/:brandName" element={<BrandPage />} />
       </Routes>
       <Footer />
     </>

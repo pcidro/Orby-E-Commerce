@@ -65,11 +65,7 @@ const Header = () => {
           </button>
         </div>
         {usuario ? (
-          <div
-            ref={menuRef}
-            className="user-menu-container"
-            style={{ position: "relative" }}
-          >
+          <div ref={menuRef} className="user-menu-container">
             <div
               onClick={toggleMenu}
               className={`header-info ${menuAberto ? "active" : ""}`}
@@ -84,11 +80,19 @@ const Header = () => {
             </div>
             {menuAberto && (
               <div className="profile-dropdown">
-                <Link className="perfil-user">
+                <Link
+                  to="/perfil"
+                  onClick={() => setMenuAberto(false)}
+                  className="dropdown-item"
+                >
                   <img src={meuPerfil} alt="" />
                   Meu Perfil
                 </Link>
-                <Link className="perfil-user">
+                <Link
+                  to="/pedidos"
+                  onClick={() => setMenuAberto(false)}
+                  className="dropdown-item"
+                >
                   <img src={pedidos} alt="" />
                   Meus Pedidos
                 </Link>
@@ -96,6 +100,7 @@ const Header = () => {
                   onClick={(e) => {
                     e.stopPropagation();
                     handleLogout();
+                    setMenuAberto(false);
                   }}
                   className="logout-item"
                 >

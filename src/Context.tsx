@@ -55,6 +55,8 @@ export const UiContextProvider = ({ children }: PropsWithChildren) => {
         setUsuario(user);
       } else {
         setUsuario(null);
+        setCart([]);
+        setTotal("0.00");
       }
       setLoading(false);
     });
@@ -103,6 +105,8 @@ export const UiContextProvider = ({ children }: PropsWithChildren) => {
     try {
       await signOut(auth);
       navigate("/login");
+      setCart([]);
+      setTotal("0.00");
     } catch (error) {
       console.error(error);
     }

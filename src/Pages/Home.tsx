@@ -59,7 +59,6 @@ const Home = () => {
       />
       <MainBannerhome />
       <NewProducts newProductsArray={newProductsArray} />
-      <Footer />
     </>
   );
 };

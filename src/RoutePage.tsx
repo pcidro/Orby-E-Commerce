@@ -4,6 +4,7 @@ import Home from "./Pages/Home";
 import Carrinho from "./Pages/Carrinho";
 import Login from "./Pages/Login/Login";
 import ProductDetails from "./Pages/ProductDetails";
+import Footer from "./Components/Footer";
 
 const RoutePage = () => {
   return (
@@ -15,6 +16,7 @@ const RoutePage = () => {
         <Route path="/produto/:id" element={<ProductDetails />} />
         <Route path="/login/*" element={<Login />} />
       </Routes>
+      <Footer />
     </>
   );
 };

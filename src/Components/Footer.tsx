@@ -10,6 +10,7 @@ const Footer = () => {
       <div className="footer">
         <div className="footer-brand">
           <img className="footer-logo" src={orbyBlack} alt="Logotipo Orby" />
+          <p>Os melhores Sneakers do mundo.</p>
         </div>
 
         <div className="footer-links">
@@ -43,7 +44,8 @@ const Footer = () => {
         </div>
 
         <div className="app-section">
-          <h3>Instalar Aplicativo</h3>
+          <h3>Instale o nosso Aplicativo!</h3>
+          <p>Disponivel para IOS e Android</p>
           <div className="app-badges">
             <a
               href="https://apps.apple.com"

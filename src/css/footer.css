@@ -2,12 +2,14 @@
   background-color: #050505;
   color: #a3a3a3;
   width: 100%;
-  padding-top: 80px;
-  padding-bottom: 80px;
-  font-family:
-    system-ui,
-    -apple-system,
-    sans-serif;
+  padding: 60px 20px 20px;
+  font-family: "Poppins";
+}
+
+.footer {
+  display: grid;
+  padding: 0 24px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 .footer-brand {
@@ -20,4 +22,75 @@
   width: 140px;
   height: auto;
   object-fit: contain;
+}
+
+.app-section h3 {
+  margin-bottom: 5px;
+}
+
+.app-badges {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.app-badges img {
+  width: 120px;
+}
+
+.footer-links h2,
+.app-section h3 {
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 24px;
+}
+
+.footer-links ul {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.footer-links a {
+  color: #a3a3a3;
+  font-size: 0.95rem;
+  display: inline-block;
+  transition: 0.3s;
+}
+
+.footer-links a:hover {
+  color: #ffffff;
+  transform: translateX(4px);
+}
+
+@media (max-width: 700px) {
+  .footer {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .footer-brand {
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .footer-links h2,
+  .app-section h3 {
+    margin-top: 12px;
+    margin-bottom: 8px;
+  }
+  .app-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }

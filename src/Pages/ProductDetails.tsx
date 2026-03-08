@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import type { IProducts } from "../Types";
-import type { IApiResponse } from "../Types";
+import type { IProducts, IApiResponse } from "../Types";
 import "../css/productdetails.css";
 import Cart from "../assets/cart.svg";
 import Context from "../Context";
@@ -24,7 +23,11 @@ const ProductDetails = () => {
   }, [id]);
 
   if (!produto) {
-    return <p>Loading...</p>;
+    return (
+      <div className="loading-container">
+        <p>Carregando os detalhes do produto...</p>
+      </div>
+    );
   }
 
   function handleAddCart(produclicado: IProducts) {
@@ -32,15 +35,83 @@ const ProductDetails = () => {
     toast.success("Produto adicionado ao carrinho!");
     navigate("../carrinho");
   }
+
+  const precoFormatado = produto.price.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
+
+  const valorParcela = (produto.price / 6).toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
+
   return (
     <div className="details-container">
-      <h1>{produto.title}</h1>
-      <p>{produto.description}</p>
-      <p>Price:{produto.price}</p>
-      <img src={produto.image} />
-      <button onClick={() => handleAddCart(produto)} className="button-cart">
-        <img src={Cart} alt="Add to cart" />
-      </button>
+      <div className="product-image-section">
+        <img src={produto.image} alt={produto.title} className="main-image" />
+      </div>
+
+      <div className="product-info-section">
+        <span className="badge-bestseller">MAIS DESEJADOS</span>
+
+        <h1 className="product-title">{produto.title}</h1>
+
+        <div className="price-container">
+          <span className="product-price">{precoFormatado}</span>
+          <span className="product-subtitle">
+            {produto.brand.toUpperCase()} - {produto.category.toUpperCase()}
+          </span>
+          <span className="installments">
+            em até 6x de {valorParcela} sem juros
+          </span>
+        </div>
+
+        <div className="reviews-container">
+          <span className="stars">★★★★★</span>
+          <span className="review-count">8 Avaliações</span>
+          <a href="#" className="add-review">
+            Adicionar sua Avaliação
+          </a>
+        </div>
+
+        <p className="product-description">{produto.description}</p>
+
+        <p className="product-release">Lançamento: {produto.releaseYear}</p>
+
+        <div className="color-section">
+          <span className="color-label">
+            Cor: <strong>{produto.color}</strong>
+          </span>
+          <div className="color-thumbnails">
+            <div className="thumbnail active">
+              <img src={produto.image} alt={`Cor ${produto.color}`} />
+            </div>
+          </div>
+        </div>
+
+        <div className="size-selector-container">
+          <select className="size-selector" defaultValue="">
+            <option value="" disabled>
+              Escolha um tamanho
+            </option>
+            <option value={produto.size}>{produto.size}</option>
+          </select>
+        </div>
+
+        <div className="shipping-info">
+          <p>{produto.shippingInformation}</p>
+          <p>{produto.warrantyInformation}</p>
+        </div>
+
+        <button
+          onClick={() => handleAddCart(produto)}
+          className="button-cart-premium"
+        >
+          Adicionar ao carrinho
+          <img src={Cart} alt="Add to cart icon" className="cart-icon" />
+        </button>
+      </div>
     </div>
   );
 };

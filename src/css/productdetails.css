@@ -1,42 +1,221 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #111111;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  font-size: 1.2rem;
+  color: #757575;
+}
+
 .details-container {
-  max-width: 900px;
+  display: flex;
+  flex-direction: row;
+  max-width: 1200px;
   margin: 40px auto;
-  padding: 24px;
+  padding: 0 20px;
+  gap: 50px;
 }
 
-.details-container h1 {
-  font-size: 28px;
-  margin-bottom: 12px;
-}
-
-.details-container p {
-  font-size: 16px;
-  margin-bottom: 10px;
-  line-height: 1.5;
-}
-
-.details-container img {
-  width: 100%;
-  max-width: 400px;
-  border-radius: 8px;
-  margin: 20px 0;
-}
-
-.details-container span {
-  font-weight: bold;
-  display: block;
-  margin-bottom: 4px;
-}
-
-.reviews-section {
-  margin-top: 30px;
-  padding-top: 20px;
-  border-top: 1px solid #ddd;
-}
-
-.reviews-section > div {
+.product-image-section {
+  flex: 1.2;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
   background-color: #f9f9f9;
-  padding: 15px;
-  border-radius: 6px;
+  padding: 40px;
+}
+
+.main-image {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  object-fit: contain;
+}
+
+.product-info-section {
+  flex: 0.8;
+  display: flex;
+  flex-direction: column;
+}
+
+.badge-bestseller {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #111111;
   margin-bottom: 15px;
+  align-self: flex-end;
+}
+
+.product-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #111111;
+}
+
+.price-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 20px;
+}
+
+.product-price {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.product-subtitle {
+  font-size: 0.75rem;
+  color: #757575;
+  margin-bottom: 5px;
+}
+
+.installments {
+  font-size: 0.85rem;
+  color: #111111;
+}
+
+.reviews-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  font-size: 0.75rem;
+}
+
+.stars {
+  color: #111111;
+  letter-spacing: 2px;
+}
+
+.review-count {
+  color: #111111;
+}
+
+.add-review {
+  color: #757575;
+  text-decoration: none;
+}
+
+.product-description {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #4a4a4a;
+  margin-bottom: 10px;
+}
+
+.product-release {
+  font-size: 0.8rem;
+  color: #757575;
+  margin-bottom: 25px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.color-section {
+  margin-bottom: 20px;
+}
+
+.color-label {
+  display: block;
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+}
+
+.color-thumbnails {
+  display: flex;
+  gap: 10px;
+}
+
+.thumbnail {
+  width: 60px;
+  height: 60px;
+  border: 1px solid #e5e5e5;
+  padding: 5px;
+  cursor: pointer;
+  background-color: #f9f9f9;
+}
+
+.thumbnail.active {
+  border: 1px solid #111111;
+}
+
+.thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.size-selector-container {
+  margin-bottom: 20px;
+}
+
+.size-selector {
+  width: 100%;
+  padding: 15px;
+  font-size: 0.9rem;
+  border: 1px solid #111111;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+}
+
+.shipping-info {
+  font-size: 0.75rem;
+  color: #757575;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.button-cart-premium {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  padding: 18px;
+  background-color: #6839a3;
+  color: #ffffff;
+  border: none;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.button-cart-premium:hover {
+  background-color: #522d82;
+}
+
+.cart-icon {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) invert(1);
+}
+
+@media (max-width: 900px) {
+  .details-container {
+    flex-direction: column;
+  }
+
+  .badge-bestseller {
+    align-self: flex-start;
+  }
 }

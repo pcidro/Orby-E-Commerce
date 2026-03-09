@@ -10,7 +10,7 @@ export interface IProducts {
   shippingInformation: string;
   availabilityStatus: string;
   color: string;
-  size: string;
+  sizes: string[];
   releaseYear: number;
 }
 

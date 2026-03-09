@@ -1,5 +1,7 @@
 import React from "react";
+
 import "../css/mainbanner.css";
+import { Link } from "react-router-dom";
 
 const MainBannerhome = () => {
   return (
@@ -11,7 +13,9 @@ const MainBannerhome = () => {
         <p className="banner-subtitle">
           Confira as melhores ofertas da temporada com até 50% OFF.
         </p>
-        <button className="banner-btn">Veja os preços</button>
+        <Link to="/brand/nike" className="banner-btn">
+          Veja os preços
+        </Link>
       </div>
     </section>
   );

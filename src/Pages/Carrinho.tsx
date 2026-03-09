@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../css/carrinho.css";
 import Context from "../Context";
 import { Link } from "react-router-dom";
+import arrowRight from "../assets/arrowright.svg";
 
 const Carrinho = () => {
   const { cart, total, increaseItem, removeItemCart } = Context();
@@ -53,10 +54,16 @@ const Carrinho = () => {
         ))}
       </div>
       {cart.length !== 0 && (
-        <div className="resumo-carrinho">
-          <strong className="total">Total:</strong>
-          <span className="valor-total">{total}</span>
-        </div>
+        <>
+          <div className="resumo-carrinho">
+            <strong className="total">Total:</strong>
+            <span className="valor-total">{total}</span>
+          </div>
+          <Link className="checkout-button" to="/checkout">
+            Ir para pagamento
+            <img src={arrowRight} alt="" />
+          </Link>
+        </>
       )}
     </div>
   );

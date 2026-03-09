@@ -12,7 +12,7 @@
       "shippingInformation": "Frete grátis em pedidos acima de $100",
       "availabilityStatus": "Em estoque",
       "color": "Vermelho",
-      "size": "US 7-14",
+      "sizes": [33, 34, 35, 36, 37, 38, 39, 40, 41],
       "releaseYear": 2023
     },
     {
@@ -27,7 +27,7 @@
       "shippingInformation": "Frete padrão grátis",
       "availabilityStatus": "Em estoque",
       "color": "Branco",
-      "size": "US 6-13",
+      "sizes": [33, 34, 35, 36, 37, 38, 39, 40, 41],
       "releaseYear": 2023
     },
     {
@@ -42,7 +42,7 @@
       "shippingInformation": "Enviado em 2-3 dias úteis",
       "availabilityStatus": "Estoque baixo",
       "color": "Preto/Branco",
-      "size": "US 8-12",
+      "sizes": [33, 34, 35, 36, 37, 38, 39, 40, 41],
       "releaseYear": 2022
     },
     {
@@ -57,7 +57,7 @@
       "shippingInformation": "Frete grátis",
       "availabilityStatus": "Em estoque",
       "color": "Branco/Cinza",
-      "size": "US 5-14",
+      "sizes": [33, 34, 35, 36, 37, 38, 39, 40, 41],
       "releaseYear": 2021
     },
     {
@@ -72,7 +72,7 @@
       "shippingInformation": "Taxas de envio padrão se aplicam",
       "availabilityStatus": "Esgotado",
       "color": "Vermelho Chicago",
-      "size": "US 7-13",
+      "sizes": [33, 34, 35, 36, 37, 38, 39, 40, 41],
       "releaseYear": 1985
     },
     {
@@ -87,7 +87,7 @@
       "shippingInformation": "Frete grátis em pedidos acima de $50",
       "availabilityStatus": "Em estoque",
       "color": "Azul",
-      "size": "US 7-15",
+      "sizes": [33, 34, 35, 36, 37, 38, 39, 40, 41],
       "releaseYear": 2023
     },
     {
@@ -102,7 +102,7 @@
       "shippingInformation": "Frete padrão grátis",
       "availabilityStatus": "Em estoque",
       "color": "Preto",
-      "size": "US 4-16",
+      "sizes": [33, 34, 35, 36, 37, 38, 39, 40, 41],
       "releaseYear": 1917
     },
     {
@@ -117,7 +117,7 @@
       "shippingInformation": "Enviado em 1 dia útil",
       "availabilityStatus": "Em estoque",
       "color": "Preto/Branco",
-      "size": "US 5-13",
+      "sizes": [33, 34, 35, 36, 37, 38, 39, 40, 41],
       "releaseYear": 1977
     },
     {
@@ -132,7 +132,7 @@
       "shippingInformation": "Frete grátis",
       "availabilityStatus": "Em estoque",
       "color": "Branco Vintage",
-      "size": "US 6-14",
+      "sizes": [33, 34, 35, 36, 37, 38, 39, 40, 41],
       "releaseYear": 1985
     },
     {
@@ -147,7 +147,7 @@
       "shippingInformation": "Frete padrão grátis",
       "availabilityStatus": "Em estoque",
       "color": "Preto/Volt",
-      "size": "US 7-13",
+      "sizes": [33, 34, 35, 36, 37, 38, 39, 40, 41],
       "releaseYear": 2018
     },
     {
@@ -162,7 +162,7 @@
       "shippingInformation": "Frete grátis em todos os pedidos",
       "availabilityStatus": "Em estoque",
       "color": "Preto Core",
-      "size": "US 6-12",
+      "sizes": [33, 34, 35, 36, 37, 38, 39, 40, 41],
       "releaseYear": 2015
     },
     {
@@ -177,7 +177,7 @@
       "shippingInformation": "Taxas de envio padrão se aplicam",
       "availabilityStatus": "Em estoque",
       "color": "Vermelho/Branco",
-      "size": "US 7-14",
+      "sizes": [33, 34, 35, 36, 37, 38, 39, 40, 41],
       "releaseYear": 1968
     },
     {
@@ -192,7 +192,7 @@
       "shippingInformation": "Frete grátis em 2 dias",
       "availabilityStatus": "Estoque baixo",
       "color": "Cinza",
-      "size": "US 8-13",
+      "sizes": [33, 34, 35, 36, 37, 38, 39, 40, 41],
       "releaseYear": 2022
     },
     {
@@ -207,7 +207,7 @@
       "shippingInformation": "Envio premium disponível",
       "availabilityStatus": "Esgotado",
       "color": "Verde",
-      "size": "US 7-14",
+      "sizes": [33, 34, 35, 36, 37, 38, 39, 40, 41],
       "releaseYear": 1989
     },
     {
@@ -222,7 +222,7 @@
       "shippingInformation": "Frete padrão grátis",
       "availabilityStatus": "Em estoque",
       "color": "Azul Francês",
-      "size": "US 8-15",
+      "sizes": [33, 34, 35, 36, 37, 38, 39, 40, 41],
       "releaseYear": 2024
     },
     {
@@ -237,7 +237,7 @@
       "shippingInformation": "Enviado em 2-3 dias úteis",
       "availabilityStatus": "Em estoque",
       "color": "Preto/Branco/Gum",
-      "size": "US 5-12",
+      "sizes": [33, 34, 35, 36, 37, 38, 39, 40, 41],
       "releaseYear": 2019
     },
     {
@@ -252,7 +252,7 @@
       "shippingInformation": "Frete grátis em pedidos acima de $50",
       "availabilityStatus": "Em estoque",
       "color": "Branco Total",
-      "size": "US 4-13",
+      "sizes": [33, 34, 35, 36, 37, 38, 39, 40, 41],
       "releaseYear": 1978
     },
     {
@@ -267,7 +267,7 @@
       "shippingInformation": "Frete grátis em pedidos acima de $100",
       "availabilityStatus": "Em estoque",
       "color": "Panda (Preto/Branco)",
-      "size": "US 6-14",
+      "sizes": [33, 34, 35, 36, 37, 38, 39, 40, 41],
       "releaseYear": 1985
     }
   ]

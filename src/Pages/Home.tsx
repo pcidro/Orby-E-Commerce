@@ -9,7 +9,6 @@ import MainBannerhome from "../Components/MainBannerhome";
 import ShopBy from "../Components/ShopBy";
 import FeaturedProducts from "../Components/FeaturedProducts";
 import NewProducts from "../Components/NewProducts";
-import Footer from "../Components/Footer";
 
 const Home = () => {
   const [produtos, setProdutos] = useState<IProducts[] | []>([]);
@@ -46,8 +45,8 @@ const Home = () => {
     getProducts();
   }, [search]);
 
-  const FeaturedProductsArray = produtos?.slice(0, 6);
-  const newProductsArray = produtos?.slice(6, 12);
+  const FeaturedProductsArray = produtos?.slice(0, 4);
+  const newProductsArray = produtos?.slice(6, 10);
 
   return (
     <>

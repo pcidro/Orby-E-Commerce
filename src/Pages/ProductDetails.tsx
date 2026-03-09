@@ -11,6 +11,7 @@ const ProductDetails = () => {
   const [produto, setProduto] = useState<IProducts | null>(null);
   const { addItemCart } = Context();
   const navigate = useNavigate();
+  const [selectedSize, setSelectedSize] = useState("");
 
   useEffect(() => {
     async function getProduct() {
@@ -31,7 +32,16 @@ const ProductDetails = () => {
   }
 
   function handleAddCart(produclicado: IProducts) {
-    addItemCart(produclicado);
+    if (!selectedSize) {
+      toast.error("Selecione um tamanho!");
+      return;
+    }
+    const produtoComTamanho = {
+      ...produclicado,
+      size: selectedSize,
+    };
+
+    addItemCart(produtoComTamanho);
     toast.success("Produto adicionado ao carrinho!");
     navigate("../carrinho");
   }
@@ -91,11 +101,20 @@ const ProductDetails = () => {
         </div>
 
         <div className="size-selector-container">
-          <select className="size-selector" defaultValue="">
+          <select
+            value={selectedSize}
+            onChange={(e) => setSelectedSize(e.target.value)}
+            className="size-selector"
+            defaultValue=""
+          >
             <option value="" disabled>
               Escolha um tamanho
             </option>
-            <option value={produto.size}>{produto.size}</option>
+            {produto.sizes.map((size) => (
+              <option value={size} key={size}>
+                {size}
+              </option>
+            ))}
           </select>
         </div>
 

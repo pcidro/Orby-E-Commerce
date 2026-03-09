@@ -45,7 +45,10 @@ export const UiContextProvider = ({ children }: PropsWithChildren) => {
   const [usuario, setUsuario] = React.useState<usuarioProps>(null);
   const [loading, setLoading] = React.useState(true);
   const [search, setSearch] = React.useState("");
-  const [cart, setCart] = React.useState<cartProps[]>([]);
+  const [cart, setCart] = React.useState<cartProps[]>(() => {
+    const savedCart = localStorage.getItem("cartOrby");
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
   const [total, setTotal] = React.useState("");
   const navigate = useNavigate();
 
@@ -62,6 +65,10 @@ export const UiContextProvider = ({ children }: PropsWithChildren) => {
     });
     return () => login();
   }, []);
+
+  React.useEffect(() => {
+    localStorage.setItem("cartOrby", JSON.stringify(cart));
+  }, [cart]);
 
   function addItemCart(newItem: IProducts) {
     const indexItem = cart.findIndex((item) => item.id === newItem.id);

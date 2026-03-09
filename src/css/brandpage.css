@@ -1,0 +1,59 @@
+.title-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: max-content;
+}
+
+.title-content {
+  font-size: 40px;
+  font-family: "Inter";
+  font-weight: bold;
+  line-height: 1.1;
+}
+
+.title-content::after {
+  width: 100%;
+  height: 2px;
+  content: "";
+  background-color: #7042a8;
+  display: block;
+  margin-top: 6px;
+}
+
+.subtitle-brand {
+  font-family: "Poppins";
+  font-size: 22px;
+  color: #8f8e8e;
+}
+
+.price-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.price-old {
+  color: #fa0000;
+  text-decoration: line-through;
+  font-size: 0.85rem;
+}
+
+.price-current {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.discount-badge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background-color: #d90429;
+  padding: 5px 12px;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 0.7rem;
+  z-index: 99;
+}

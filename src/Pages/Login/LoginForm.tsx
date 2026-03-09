@@ -31,7 +31,7 @@ const LoginForm = () => {
             <h1>Bem-vindo de volta</h1>
             <p>
               Para aproveitar ao máximo a{" "}
-              <span className="orby-green">Orby</span> insira o endereço de
+              <span className="orby-purple">Orby</span> insira o endereço de
               e-mail e a senha da sua conta abaixo.
             </p>
           </div>

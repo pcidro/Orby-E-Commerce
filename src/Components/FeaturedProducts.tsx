@@ -8,12 +8,14 @@ import { Link } from "react-router-dom";
 
 interface IFeaturedProjects {
   featuredProductsArray: IProducts[];
-  ProductsRef: React.RefObject<HTMLUListElement | null>;
+  ProductsRef: React.RefObject<HTMLDivElement | null>;
+  handleOpenModal: (product: IProducts) => void;
 }
 
 const FeaturedProducts = ({
   featuredProductsArray,
   ProductsRef,
+  handleOpenModal,
 }: IFeaturedProjects) => {
   const { addItemCart } = Context();
 
@@ -22,9 +24,9 @@ const FeaturedProducts = ({
     addItemCart(produtoclicado);
   }
   return (
-    <div className="container">
+    <div ref={ProductsRef} className="container">
       <h1 className="main-title">Produtos em destaque</h1>
-      <ul ref={ProductsRef} className="products-container">
+      <ul className="products-container">
         {featuredProductsArray.map((produto) => {
           const isNike = produto.brand.toLowerCase().trim() === "nike";
           return (
@@ -37,15 +39,14 @@ const FeaturedProducts = ({
               <h2>{produto.title}</h2>
 
               <div className="product-info">
-                {isNike ? (
-                  <div className="price-container">
-                    <span className="price-old">${produto.price + 70}</span>
-
-                    <span className="price-current">{produto.price}</span>
+                <div className="product-info">
+                  <div className="price-container-brand">
+                    {isNike && (
+                      <span className="price-old">${produto.price + 70}</span>
+                    )}
+                    <span className="price">${produto.price}</span>
                   </div>
-                ) : (
-                  <span className="price">${produto.price}</span>
-                )}
+                </div>
               </div>
 
               <div className="product-detail-wrapper">

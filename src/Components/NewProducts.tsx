@@ -8,13 +8,12 @@ import { Link } from "react-router-dom";
 
 interface InewProducts {
   newProductsArray: IProducts[];
+  handleOpenModal: (product: IProducts) => void;
 }
 
-const NewProducts = ({ newProductsArray }: InewProducts) => {
-  const { addItemCart } = Context();
+const NewProducts = ({ newProductsArray, handleOpenModal }: InewProducts) => {
   function handleAddCart(produtoclicado: IProducts) {
-    toast.success("Produto adicionado ao carrinho!");
-    addItemCart(produtoclicado);
+    handleOpenModal(produtoclicado);
   }
 
   return (
@@ -33,14 +32,14 @@ const NewProducts = ({ newProductsArray }: InewProducts) => {
               <h2>{produto.title}</h2>
 
               <div className="product-info">
-                {isNike ? (
-                  <div className="price-container">
-                    <span className="price-old">${produto.price + 70}</span>
-                    <span className="price-current">${produto.price}</span>
+                <div className="product-info">
+                  <div className="price-container-brand">
+                    {isNike && (
+                      <span className="price-old">${produto.price + 70}</span>
+                    )}
+                    <span className="price">${produto.price}</span>
                   </div>
-                ) : (
-                  <span className="price">${produto.price}</span>
-                )}
+                </div>
               </div>
 
               <div className="product-detail-wrapper">

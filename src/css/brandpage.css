@@ -6,10 +6,13 @@
 }
 
 .title-content {
-  font-size: 40px;
-  font-family: "Inter";
-  font-weight: bold;
-  line-height: 1.1;
+  font-size: 48px;
+  font-family: "Inter", sans-serif;
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+  text-transform: uppercase;
 }
 
 .title-content::after {
@@ -22,21 +25,25 @@
 }
 
 .subtitle-brand {
-  font-family: "Poppins";
-  font-size: 22px;
-  color: #8f8e8e;
-}
-
-.price-container {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  color: #666;
+  letter-spacing: 0.5px;
+  margin-bottom: 48px;
+  border-left: 3px solid #7042a8;
+  padding-left: 15px;
 }
 
 .price-old {
   color: #fa0000;
   text-decoration: line-through;
   font-size: 0.85rem;
+}
+
+.price-container-brand {
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .price-current {

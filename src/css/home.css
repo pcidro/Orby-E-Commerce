@@ -6,11 +6,12 @@
   max-width: 1400px;
   margin: 60px auto;
   padding: 0 24px;
+  scroll-margin-top: 120px;
 }
 
 .products-container {
   max-width: 1200px;
-  margin: 40px auto;
+  margin: 0 auto;
   padding: 0 24px;
   list-style: none;
   display: grid;
@@ -23,10 +24,10 @@
   background: #ffffff;
   border: 1px solid rgba(226, 232, 240, 0.6);
   border-radius: 20px;
-  padding: 24px;
+  padding: 14px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
   box-shadow:
     0 2px 4px rgba(0, 0, 0, 0.02),
     0 8px 16px rgba(0, 0, 0, 0.03),
@@ -131,7 +132,6 @@
 .product-detail {
   text-transform: uppercase;
   font-family: "Inter", sans-serif;
-  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -167,15 +167,14 @@
     width: 100%;
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
     gap: 16px;
-    padding: 0;
-    margin: 0;
+
     list-style: none;
     overflow: visible;
   }
 
   .product {
-    padding: 12px;
-    gap: 12px;
+    padding: 5px;
+    gap: 5px;
   }
 
   .product img {

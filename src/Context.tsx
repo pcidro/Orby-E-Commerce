@@ -7,6 +7,7 @@ import type { User } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
 interface iUiContext {
+  loading: boolean;
   search: string;
   setSearch: React.Dispatch<React.SetStateAction<string>>;
   cart: cartProps[];
@@ -148,6 +149,7 @@ export const UiContextProvider = ({ children }: PropsWithChildren) => {
   return (
     <ContextUi.Provider
       value={{
+        loading,
         search,
         setSearch,
         cart,

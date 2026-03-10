@@ -77,14 +77,6 @@ const ProductDetails = () => {
           </span>
         </div>
 
-        <div className="reviews-container">
-          <span className="stars">★★★★★</span>
-          <span className="review-count">8 Avaliações</span>
-          <a href="#" className="add-review">
-            Adicionar sua Avaliação
-          </a>
-        </div>
-
         <p className="product-description">{produto.description}</p>
 
         <p className="product-release">Lançamento: {produto.releaseYear}</p>

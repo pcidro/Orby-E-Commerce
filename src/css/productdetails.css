@@ -54,7 +54,7 @@
   color: #111111;
 }
 
-.price-container {
+.product-info-section .price-container {
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;

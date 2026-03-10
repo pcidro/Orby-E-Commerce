@@ -56,7 +56,7 @@ const BrandPage = () => {
                   <div className="price-container">
                     <span className="price-old">${produto.price + 70}</span>
 
-                    <span className="price-current">${produto.price}</span>
+                    <span className="price">${produto.price}</span>
                   </div>
                 ) : (
                   <span className="price">${produto.price}</span>

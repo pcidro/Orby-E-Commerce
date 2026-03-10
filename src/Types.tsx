@@ -11,6 +11,7 @@ export interface IProducts {
   availabilityStatus: string;
   color: string;
   sizes: string[];
+  size: string;
   releaseYear: number;
 }
 

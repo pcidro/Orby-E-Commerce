@@ -30,6 +30,11 @@ const Carrinho = () => {
               <strong>{item.price}</strong>
             </div>
 
+            <div className="produto-tamanho">
+              <span>Tamanho:</span>
+              <strong>{item.size}</strong>
+            </div>
+
             <div className="flex-cart">
               <button
                 onClick={() => removeItemCart(item)}

@@ -30,6 +30,7 @@ interface cartProps {
   price: number;
   amount: number;
   total: number;
+  size: string;
 }
 
 type usuarioProps = null | User;
@@ -72,7 +73,9 @@ export const UiContextProvider = ({ children }: PropsWithChildren) => {
   }, [cart]);
 
   function addItemCart(newItem: IProducts) {
-    const indexItem = cart.findIndex((item) => item.id === newItem.id);
+    const indexItem = cart.findIndex(
+      (item) => item.id === newItem.id && item.size === newItem.size,
+    );
     if (indexItem !== -1) {
       const cartList = [...cart];
       cartList[indexItem] = {

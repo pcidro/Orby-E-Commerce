@@ -8,8 +8,11 @@ import { useNavigate } from "react-router-dom";
 
 interface iUiContext {
   loading: boolean;
+  modal: boolean;
+  selectedProduct: IProducts | null;
   search: string;
   setSearch: React.Dispatch<React.SetStateAction<string>>;
+  setSelectedProduct: React.Dispatch<React.SetStateAction<IProducts | null>>;
   cart: cartProps[];
   cartAmount: number;
   setCart: React.Dispatch<React.SetStateAction<cartProps[]>>;
@@ -17,8 +20,10 @@ interface iUiContext {
   removeItemCart: (product: cartProps) => void;
   total: string;
   usuario: User | null;
-  increaseItem: (id: number) => void;
+  increaseItem: (id: number, size: string) => void;
   handleLogout: () => void;
+  setModal: React.Dispatch<React.SetStateAction<boolean>>;
+  handleOpenModal: (product: IProducts) => void;
 }
 
 interface cartProps {
@@ -53,6 +58,9 @@ export const UiContextProvider = ({ children }: PropsWithChildren) => {
   });
   const [total, setTotal] = React.useState("");
   const navigate = useNavigate();
+  const [modal, setModal] = React.useState(false);
+  const [selectedProduct, setSelectedProduct] =
+    React.useState<IProducts | null>(null);
 
   React.useEffect(() => {
     const login = onAuthStateChanged(auth, (user) => {
@@ -96,9 +104,9 @@ export const UiContextProvider = ({ children }: PropsWithChildren) => {
     totalResultCart([...cart, data]);
   }
 
-  function increaseItem(id: number) {
+  function increaseItem(id: number, size: string) {
     const newCart = cart.map((item) => {
-      if (item.id === id) {
+      if (item.id === id && item.size === size) {
         const amount = item.amount + 1;
         return {
           ...item,
@@ -124,7 +132,9 @@ export const UiContextProvider = ({ children }: PropsWithChildren) => {
   }
 
   function removeItemCart(product: cartProps) {
-    const indexItem = cart.findIndex((item) => item.id === product.id);
+    const indexItem = cart.findIndex(
+      (item) => item.id === product.id && item.size === product.size,
+    );
     if (cart[indexItem].amount > 1) {
       const newCart = [...cart];
       newCart[indexItem] = {
@@ -137,7 +147,9 @@ export const UiContextProvider = ({ children }: PropsWithChildren) => {
       return;
     }
 
-    const removeItem = cart.filter((item) => item.id !== product.id);
+    const removeItem = cart.filter(
+      (item) => item.id !== product.id || item.size !== product.size,
+    );
     setCart(removeItem);
     toast.error("Produto removido do carrinho!");
     totalResultCart(removeItem);
@@ -149,9 +161,18 @@ export const UiContextProvider = ({ children }: PropsWithChildren) => {
     setTotal(result);
   }
 
+  function handleOpenModal(product: IProducts) {
+    setSelectedProduct(product);
+    setModal(true);
+  }
+
   return (
     <ContextUi.Provider
       value={{
+        handleOpenModal,
+        selectedProduct,
+        modal,
+        setSelectedProduct,
         loading,
         search,
         setSearch,
@@ -164,6 +185,7 @@ export const UiContextProvider = ({ children }: PropsWithChildren) => {
         increaseItem,
         usuario,
         handleLogout,
+        setModal,
       }}
     >
       {children}

@@ -7,6 +7,7 @@ import ProductDetails from "./Pages/ProductDetails";
 import Footer from "./Components/Footer";
 import BrandPage from "./Pages/BrandPage";
 import Checkout from "./Pages/Checkout";
+import Search from "./Pages/Search";
 
 const RoutePage = () => {
   return (
@@ -19,6 +20,7 @@ const RoutePage = () => {
         <Route path="/login/*" element={<Login />} />
         <Route path="/brand/:brandName" element={<BrandPage />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/search" element={<Search />} />
       </Routes>
       <Footer />
     </>

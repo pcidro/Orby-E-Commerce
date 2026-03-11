@@ -44,7 +44,7 @@ const Carrinho = () => {
               </button>
               <span className="quantity">{item.amount}</span>
               <button
-                onClick={() => increaseItem(item.id)}
+                onClick={() => increaseItem(item.id, item.size)}
                 className="btn-cart plus"
               >
                 +

@@ -18,7 +18,6 @@ const Home = () => {
     null,
   );
 
-  const { search } = Context();
   const ProductsRef = useRef<null | HTMLDivElement>(null);
   const scrollToSection = () => {
     if (ProductsRef.current) {
@@ -34,24 +33,13 @@ const Home = () => {
       try {
         const res = await fetch("/sneakers.json");
         const data: IApiResponse = await res.json();
-        if (search) {
-          const searchTerm = search.trim().toLowerCase();
-          const produtosItens = data.products.filter(
-            (produto) =>
-              produto.title.toLowerCase().includes(searchTerm) ||
-              produto.category.toLowerCase().includes(searchTerm) ||
-              produto.brand.toLowerCase().includes(searchTerm),
-          );
-          setProdutos(produtosItens);
-        } else {
-          setProdutos(data.products);
-        }
+        setProdutos(data.products);
       } catch (error) {
         console.log(error);
       }
     }
     getProducts();
-  }, [search]);
+  }, []);
 
   const FeaturedProductsArray = produtos?.slice(0, 4);
   const newProductsArray = produtos?.slice(6, 10);

@@ -1,30 +1,50 @@
-import React from "react";
-import arrowRight from "../assets/arrowright.svg";
-import Context from "../Context";
+import React, { useEffect, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import type { IProducts } from "../Types";
-import toast from "react-hot-toast";
+import type { IApiResponse } from "../Types";
 import Cart from "../assets/cart.svg";
-import { Link } from "react-router-dom";
+import Context from "../Context";
+import arrowRight from "../assets/arrowright.svg";
+import SizeModal from "../Components/SizeModal";
 
-interface IFeaturedProjects {
-  featuredProductsArray: IProducts[];
-  ProductsRef: React.RefObject<HTMLDivElement | null>;
-  handleOpenModal: (product: IProducts) => void;
-}
+const Search = () => {
+  const [searchParams] = useSearchParams();
+  const [produtos, setProdutos] = useState<IProducts[]>([]);
+  const query = searchParams.get("q");
+  const { addItemCart, modal, handleOpenModal, setModal, selectedProduct } =
+    Context();
 
-const FeaturedProducts = ({
-  featuredProductsArray,
-  ProductsRef,
-  handleOpenModal,
-}: IFeaturedProjects) => {
   function handleAddCart(produtoclicado: IProducts) {
     handleOpenModal(produtoclicado);
   }
+
+  useEffect(() => {
+    async function getSearch() {
+      try {
+        const res = await fetch("/sneakers.json");
+        const data: IApiResponse = await res.json();
+        if (query) {
+          const filtered = data.products.filter(
+            (p) =>
+              p.title.toLowerCase().includes(query.toLowerCase()) ||
+              p.brand.toLowerCase().includes(query.toLowerCase()) ||
+              p.category.toLowerCase().includes(query.toLowerCase()),
+          );
+          setProdutos(filtered);
+        }
+      } catch (erro) {
+        console.log(erro);
+      }
+    }
+
+    getSearch();
+  }, [query]);
+
   return (
-    <div ref={ProductsRef} className="container">
+    <div className="container">
       <h1 className="main-title">Produtos em destaque</h1>
       <ul className="products-container">
-        {featuredProductsArray.map((produto) => {
+        {produtos.map((produto) => {
           const isNike = produto.brand.toLowerCase().trim() === "nike";
           return (
             <li className="product" key={produto.id}>
@@ -62,8 +82,11 @@ const FeaturedProducts = ({
           );
         })}
       </ul>
+      {modal && selectedProduct && (
+        <SizeModal product={selectedProduct} onClose={() => setModal(false)} />
+      )}
     </div>
   );
 };
 
-export default FeaturedProducts;
+export default Search;

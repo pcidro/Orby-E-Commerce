@@ -4,7 +4,7 @@ import "../css/header.css";
 import Cart from "../assets/cart2.svg";
 import searchIcon from "../assets/search.svg";
 import Context from "../Context";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import User from "../assets/user.svg";
 import arrowBotton from "../assets/chevrondown.svg";
 import meuPerfil from "../assets/meuperfil.svg";
@@ -16,9 +16,12 @@ const Header = () => {
   const [inputValue, setInputValue] = useState("");
   const [menuAberto, setMenuAberto] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   function searchItem() {
     setSearch(inputValue);
+    navigate(`/search?q=${inputValue}`);
+    setInputValue("");
   }
 
   const toggleMenu = () => {
@@ -52,6 +55,7 @@ const Header = () => {
           <input
             className="input-header"
             type="text"
+            value={inputValue}
             onChange={({ target }) => setInputValue(target.value)}
             placeholder="Busque um sneaker..."
             onKeyDown={(e) => e.key === "Enter" && searchItem()}

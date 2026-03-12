@@ -2,19 +2,20 @@ import React from "react";
 import arrowRight from "../assets/arrowright.svg";
 import Context from "../Context";
 import type { IProducts } from "../Types";
-import toast from "react-hot-toast";
 import Cart from "../assets/cart.svg";
 import { Link } from "react-router-dom";
+import SizeModal from "./SizeModal";
 
 interface InewProducts {
   newProductsArray: IProducts[];
-  handleOpenModal: (product: IProducts) => void;
 }
 
-const NewProducts = ({ newProductsArray, handleOpenModal }: InewProducts) => {
+const NewProducts = ({ newProductsArray }: InewProducts) => {
   function handleAddCart(produtoclicado: IProducts) {
     handleOpenModal(produtoclicado);
   }
+
+  const { modal, setModal, selectedProduct, handleOpenModal } = Context();
 
   return (
     <div className="container">
@@ -58,6 +59,9 @@ const NewProducts = ({ newProductsArray, handleOpenModal }: InewProducts) => {
           );
         })}
       </ul>
+      {modal && selectedProduct && (
+        <SizeModal product={selectedProduct} onClose={() => setModal(false)} />
+      )}
     </div>
   );
 };

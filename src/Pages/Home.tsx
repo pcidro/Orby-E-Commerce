@@ -13,11 +13,7 @@ import SizeModal from "../Components/SizeModal";
 
 const Home = () => {
   const [produtos, setProdutos] = useState<IProducts[] | []>([]);
-  const [modal, setModal] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState<IProducts | null>(
-    null,
-  );
-
+  const { modal, setModal, selectedProduct, handleOpenModal } = Context();
   const ProductsRef = useRef<null | HTMLDivElement>(null);
   const scrollToSection = () => {
     if (ProductsRef.current) {
@@ -44,11 +40,6 @@ const Home = () => {
   const FeaturedProductsArray = produtos?.slice(0, 4);
   const newProductsArray = produtos?.slice(6, 10);
 
-  function handleOpenModal(product: IProducts) {
-    setSelectedProduct(product);
-    setModal(true);
-  }
-
   return (
     <>
       <Hero scroll={scrollToSection} />
@@ -57,13 +48,9 @@ const Home = () => {
       <FeaturedProducts
         ProductsRef={ProductsRef}
         featuredProductsArray={FeaturedProductsArray}
-        handleOpenModal={handleOpenModal}
       />
       <MainBannerhome />
-      <NewProducts
-        handleOpenModal={handleOpenModal}
-        newProductsArray={newProductsArray}
-      />
+      <NewProducts newProductsArray={newProductsArray} />
       {modal && selectedProduct && (
         <SizeModal product={selectedProduct} onClose={() => setModal(false)} />
       )}

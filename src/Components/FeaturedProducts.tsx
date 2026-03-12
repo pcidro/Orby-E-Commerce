@@ -5,21 +5,21 @@ import type { IProducts } from "../Types";
 import toast from "react-hot-toast";
 import Cart from "../assets/cart.svg";
 import { Link } from "react-router-dom";
+import SizeModal from "./SizeModal";
 
 interface IFeaturedProjects {
   featuredProductsArray: IProducts[];
   ProductsRef: React.RefObject<HTMLDivElement | null>;
-  handleOpenModal: (product: IProducts) => void;
 }
 
 const FeaturedProducts = ({
   featuredProductsArray,
   ProductsRef,
-  handleOpenModal,
 }: IFeaturedProjects) => {
   function handleAddCart(produtoclicado: IProducts) {
     handleOpenModal(produtoclicado);
   }
+  const { modal, setModal, selectedProduct, handleOpenModal } = Context();
   return (
     <div ref={ProductsRef} className="container">
       <h1 className="main-title">Produtos em destaque</h1>
@@ -28,8 +28,10 @@ const FeaturedProducts = ({
           const isNike = produto.brand.toLowerCase().trim() === "nike";
           return (
             <li className="product" key={produto.id}>
-              {isNike && <span className="discount-badge">-50% OFF</span>}
-              <img src={produto.image} alt={produto.title} />
+              <Link to={`/produto/${produto.id}`}>
+                {isNike && <span className="discount-badge">-50% OFF</span>}
+                <img src={produto.image} alt={produto.title} />
+              </Link>
               <span className="category">
                 {produto.category.replace("-", " ")}
               </span>
@@ -62,6 +64,9 @@ const FeaturedProducts = ({
           );
         })}
       </ul>
+      {modal && selectedProduct && (
+        <SizeModal product={selectedProduct} onClose={() => setModal(false)} />
+      )}
     </div>
   );
 };

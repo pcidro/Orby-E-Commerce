@@ -14,37 +14,37 @@ const Carrinho = () => {
       <div className="lista-produtos">
         {cart.length === 0 && (
           <div className="noproducts">
-            <p> Ops! Seu carrinho está vazio!</p>
+            <p>Seu carrinho está vazio!</p>
             <Link to="/">Acessar produtos</Link>
           </div>
         )}
-        {cart.map((item) => (
-          <section key={item.id} className="item-cart">
+        {cart.map((produto) => (
+          <section key={produto.id} className="item-cart">
             <div className="produto-info">
-              <img src={item.image} alt="AirPods" />
-              <h2 className="produto-nome">{item.title}</h2>
+              <img src={produto.image} />
+              <h2 className="produto-nome">{produto.title}</h2>
             </div>
 
             <div className="produto-preco">
               <span>Price:</span>
-              <strong>{item.price}</strong>
+              <strong>{produto.price}</strong>
             </div>
 
             <div className="produto-tamanho">
               <span>Tamanho:</span>
-              <strong>{item.size}</strong>
+              <strong>{produto.size}</strong>
             </div>
 
             <div className="flex-cart">
               <button
-                onClick={() => removeItemCart(item)}
+                onClick={() => removeItemCart(produto)}
                 className="btn-cart minus"
               >
                 -
               </button>
-              <span className="quantity">{item.amount}</span>
+              <span className="quantity">{produto.amount}</span>
               <button
-                onClick={() => increaseItem(item.id, item.size)}
+                onClick={() => increaseItem(produto.id, produto.size)}
                 className="btn-cart plus"
               >
                 +
@@ -53,7 +53,7 @@ const Carrinho = () => {
 
             <div className="produto-subtotal">
               <span>SubTotal:</span>
-              <strong>{item.total.toFixed(2)}</strong>
+              <strong>{produto.total.toFixed(2)}</strong>
             </div>
           </section>
         ))}

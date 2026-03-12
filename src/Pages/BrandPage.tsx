@@ -3,15 +3,15 @@ import { useParams } from "react-router-dom";
 import Cart from "../assets/cart.svg";
 import { Link } from "react-router-dom";
 import arrowRight from "../assets/arrowright.svg";
-import toast from "react-hot-toast";
 import "../css/brandpage.css";
 
 import type { IProducts, IApiResponse } from "../Types";
 import Context from "../Context";
+import SizeModal from "../Components/SizeModal";
 
 const BrandPage = () => {
   const [produtos, setProdutos] = useState<IProducts[]>([]);
-  const { addItemCart } = Context();
+  const { modal, setModal, selectedProduct, handleOpenModal } = Context();
   const { brandName } = useParams();
   useEffect(() => {
     async function getProducts() {
@@ -30,9 +30,9 @@ const BrandPage = () => {
   );
 
   function handleAddCart(produtoclicado: IProducts) {
-    toast.success("Produto adicionado ao carrinho!");
-    addItemCart(produtoclicado);
+    handleOpenModal(produtoclicado);
   }
+
   return (
     <div className="container">
       <div className="title-content">
@@ -79,6 +79,9 @@ const BrandPage = () => {
           );
         })}
       </ul>
+      {modal && selectedProduct && (
+        <SizeModal product={selectedProduct} onClose={() => setModal(false)} />
+      )}
     </div>
   );
 };

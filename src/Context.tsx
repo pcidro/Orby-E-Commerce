@@ -36,6 +36,7 @@ interface cartProps {
   amount: number;
   total: number;
   size: string;
+  color: string;
 }
 
 type usuarioProps = null | User;

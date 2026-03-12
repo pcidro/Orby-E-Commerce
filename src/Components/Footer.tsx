@@ -44,7 +44,7 @@ const Footer = () => {
         </div>
 
         <div className="app-section">
-          <h3>Instale o nosso Aplicativo!</h3>
+          <h3>Instale o nosso Aplicativo e obtenha descontos exclusivos!</h3>
           <p>Disponivel para IOS e Android</p>
           <div className="app-badges">
             <a

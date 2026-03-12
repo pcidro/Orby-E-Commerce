@@ -6,7 +6,7 @@ import Login from "./Pages/Login/Login";
 import ProductDetails from "./Pages/ProductDetails";
 import Footer from "./Components/Footer";
 import BrandPage from "./Pages/BrandPage";
-import Checkout from "./Pages/Checkout";
+import Checkout from "./Pages/Checkout/Checkout";
 import Search from "./Pages/Search";
 
 const RoutePage = () => {

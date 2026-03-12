@@ -18,3 +18,10 @@ export interface IProducts {
 export interface IApiResponse {
   products: IProducts[];
 }
+
+export interface FormData {
+  nome: string;
+  cep: string;
+  endereco: string;
+  numero: string;
+}

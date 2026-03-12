@@ -1,44 +1,78 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Context from "../../Context";
 import CheckoutForm from "./CheckoutForm";
 import CheckoutPagamento from "./CheckoutPagamento";
-import "../../css/checkout.css";
+import "./checkout.css";
+import toast from "react-hot-toast";
+import type { FormData } from "../../Types";
 
 const Checkout = () => {
-  const { cart } = Context();
+  const { cart, usuario } = Context();
   const [currentStep, setCurrentStep] = useState(0);
+  const [addressData, setAddressData] = useState<FormData>({
+    nome: usuario?.displayName || "",
+    cep: "",
+    endereco: "",
+    numero: "",
+  });
+
+  useEffect(() => {
+    setAddressData((prev) => ({
+      ...prev,
+      nome: usuario?.displayName || "",
+    }));
+  }, [usuario]);
   const steps = [
     {
       title: "Frete",
-      component: <CheckoutForm />,
+      component: (
+        <CheckoutForm
+          adressData={addressData}
+          setAddressData={setAddressData}
+        />
+      ),
     },
     {
-      title: "Revisão e Pagamentos",
+      title: "Pagamentos",
       component: <CheckoutPagamento />,
     },
   ];
+
+  const StepValid = () => {
+    if (currentStep === 0) {
+      return (
+        addressData.nome.trim() !== "" &&
+        addressData.cep.trim() !== "" &&
+        addressData.endereco.trim() !== "" &&
+        addressData.numero.trim() !== ""
+      );
+    }
+    return true;
+  };
+
+  const handleStepChange = (index: number) => {
+    if (index > currentStep && !StepValid()) {
+      toast.error("Prencha todos os campos!");
+      return;
+    }
+    setCurrentStep(index);
+  };
+
   return (
     <div className="checkout-container">
-      <div className="stepper-container">
+      <div className="stepper">
         <nav className="header-stepper">
           {steps.map((step, index) => (
-            <div
-              className="steps-button"
-              onClick={() => setCurrentStep(index)}
-              key={index}
-            >
-              <button className="button-step">
-                {index + 1} {step.title}
+            <div onClick={() => handleStepChange(index)} key={index}>
+              <button
+                className={`button-step ${currentStep === index ? "active" : ""}`}
+              >
+                {index + 1} - {step.title}
               </button>
             </div>
           ))}
         </nav>
-        <div className="stepper-content">
-          {steps[currentStep].component}
-          {currentStep === steps.length - 1 && (
-            <button>Finalizar Pedido</button>
-          )}
-        </div>
+        <div className="stepper-content">{steps[currentStep].component}</div>
       </div>
       <div className="resumopedido">
         <h2>Resumo do Pedido</h2>

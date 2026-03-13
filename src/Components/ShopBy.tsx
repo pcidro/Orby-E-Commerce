@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../css/shopby.css";
 import { Link } from "react-router-dom";
 
@@ -10,8 +10,9 @@ const ShopBy = () => {
     { name: "Jordan", image: "/products/jordan1.png" },
     { name: "Converse", image: "/products/converse1.png" },
   ];
+
   return (
-    <section className="shop-by-brand">
+    <section className="shop-by-brand animeLeft">
       <h1>Compre por marca</h1>
       <ul className="brands-grid">
         {brands.map((brand) => (

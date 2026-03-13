@@ -125,10 +125,6 @@
   transform: rotate(-5deg);
 }
 
-.input-group:hover {
-  background-color: #f8fafc;
-}
-
 .product-detail {
   text-transform: uppercase;
   font-family: "Inter", sans-serif;

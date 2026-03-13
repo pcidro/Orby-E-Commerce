@@ -14,6 +14,11 @@ const Checkout = () => {
     cep: "",
     endereco: "",
     numero: "",
+    telnumber: "",
+    bairro: "",
+    cidade: "",
+    estado: "",
+    complemento: "-",
   });
 
   useEffect(() => {
@@ -44,7 +49,11 @@ const Checkout = () => {
         addressData.nome.trim() !== "" &&
         addressData.cep.trim() !== "" &&
         addressData.endereco.trim() !== "" &&
-        addressData.numero.trim() !== ""
+        addressData.numero.trim() !== "" &&
+        addressData.bairro.trim() !== "" &&
+        addressData.cidade.trim() !== "" &&
+        addressData.estado.trim() !== "" &&
+        addressData.telnumber.trim() !== ""
       );
     }
     return true;
@@ -56,6 +65,15 @@ const Checkout = () => {
       return;
     }
     setCurrentStep(index);
+  };
+
+  const handleNextStep = () => {
+    if (!StepValid()) {
+      toast.error("Prencha todos os campos!");
+      return;
+    }
+
+    setCurrentStep((prev) => prev + 1);
   };
 
   return (
@@ -73,7 +91,16 @@ const Checkout = () => {
           ))}
         </nav>
         <div className="stepper-content">{steps[currentStep].component}</div>
+        {currentStep === 0 && (
+          <button
+            className="stepper-content-button"
+            onClick={() => handleNextStep()}
+          >
+            Continuar
+          </button>
+        )}
       </div>
+
       <div className="resumopedido">
         <h2>Resumo do Pedido</h2>
         {cart.map((produto) => (

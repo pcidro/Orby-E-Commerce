@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./loginform.css";
 import { auth, provider } from "../../firebase";
 import GoogleIcon from "../../assets/google.svg";
@@ -8,7 +8,6 @@ import { signInWithPopup } from "firebase/auth";
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  const navigate = useNavigate();
 
   const handleSubmit = (e: React.SubmitEvent) => {
     e.preventDefault();
@@ -16,8 +15,7 @@ const LoginForm = () => {
 
   const handleGoogleLogin = async () => {
     try {
-      const loginGoogle = await signInWithPopup(auth, provider);
-      navigate("/");
+      await signInWithPopup(auth, provider);
     } catch (error) {
       console.error("Erro no Google:", error);
     }

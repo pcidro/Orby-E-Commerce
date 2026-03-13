@@ -8,6 +8,7 @@ import Footer from "./Components/Footer";
 import BrandPage from "./Pages/BrandPage";
 import Checkout from "./Pages/Checkout/Checkout";
 import Search from "./Pages/Search";
+import ProtectedRoute from "./ProtectedRoute";
 
 const RoutePage = () => {
   return (
@@ -19,7 +20,10 @@ const RoutePage = () => {
         <Route path="/produto/:id" element={<ProductDetails />} />
         <Route path="/login/*" element={<Login />} />
         <Route path="/brand/:brandName" element={<BrandPage />} />
-        <Route path="/checkout" element={<Checkout />} />
+        <Route
+          path="/checkout"
+          element={<ProtectedRoute>{<Checkout />}</ProtectedRoute>}
+        />
         <Route path="/search" element={<Search />} />
       </Routes>
       <Footer />

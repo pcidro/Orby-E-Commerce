@@ -1,3 +1,104 @@
+.card-container-data {
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.05);
+  padding: 2.5rem;
+  gap: 3rem;
+  font-family: "Inter";
+  box-sizing: border-box;
+}
+
+.card-wrapper {
+  margin-bottom: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .form-credit {
-  margin-bottom: 20px;
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.inputgroup-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.inputgroup-card label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.inputgroup-card input {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  font-size: 1rem;
+  color: #0f172a;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+  box-sizing: border-box;
+}
+
+.inputgroup-card input::placeholder {
+  color: #94a3b8;
+}
+
+.inputgroup-card input:hover {
+  border-color: #cbd5e1;
+  background-color: #f1f5f9;
+}
+
+.inputgroup-card input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+}
+
+.row-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.row-group .inputgroup-card {
+  flex: 1;
+}
+
+.submit-button:active {
+  transform: translateY(1px);
+}
+
+@media (min-width: 800px) {
+  .payment-container {
+    flex-direction: row;
+    padding: 3.5rem;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  .card-wrapper {
+    width: 45%;
+  }
+
+  .form-credit {
+    width: 45%;
+    margin: 0;
+  }
 }

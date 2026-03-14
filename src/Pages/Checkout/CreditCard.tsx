@@ -3,6 +3,7 @@ import Cards from "react-credit-cards-2";
 import type { Focused } from "react-credit-cards-2";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
 import "./creditcard.css";
+
 const CreditCard = () => {
   const [state, setState] = useState({
     number: "",
@@ -22,49 +23,69 @@ const CreditCard = () => {
   };
 
   return (
-    <div>
-      <Cards
-        number={state.number}
-        expiry={state.expiry}
-        cvc={state.cvc}
-        name={state.name}
-        focused={state.focus as Focused}
-      />
+    <div className="payment-container">
+      <div className="card-wrapper">
+        <Cards
+          number={state.number}
+          expiry={state.expiry}
+          cvc={state.cvc}
+          name={state.name}
+          focused={state.focus as Focused}
+        />
+      </div>
 
       <form className="form-credit">
-        <input
-          type="number"
-          name="number"
-          placeholder="Número do Cartão"
-          value={state.number}
-          onChange={handleInputChange}
-          onFocus={handleInputFocus}
-        />
-        <input
-          type="text"
-          name="name"
-          placeholder="Nome no Cartão"
-          value={state.name}
-          onChange={handleInputChange}
-          onFocus={handleInputFocus}
-        />
-        <div>
+        <div className="inputgroup-card">
+          <label htmlFor="number">Número do Cartão</label>
           <input
-            type="text"
-            name="expiry"
-            placeholder="Validade (MM/AA)"
-            value={state.expiry}
-            onChange={handleInputChange}
-            onFocus={handleInputFocus}
-          />
-          <input
+            id="number"
             type="number"
-            name="cvc"
-            placeholder="Codigo de segurança(CVC)"
-            value={state.cvc}
+            name="number"
+            placeholder="0000 0000 0000 0000"
+            value={state.number}
             onChange={handleInputChange}
             onFocus={handleInputFocus}
           />
+        </div>
+
+        <div className="inputgroup-card">
+          <label htmlFor="name">Nome no Cartão</label>
+          <input
+            id="name"
+            type="text"
+            name="name"
+            placeholder="Ex: 'Paulo Cidro'"
+            value={state.name}
+            onChange={handleInputChange}
+            onFocus={handleInputFocus}
+          />
+        </div>
+
+        <div className="row-group">
+          <div className="inputgroup-card">
+            <label htmlFor="expiry">Validade</label>
+            <input
+              id="expiry"
+              type="text"
+              name="expiry"
+              placeholder="MM/AA"
+              value={state.expiry}
+              onChange={handleInputChange}
+              onFocus={handleInputFocus}
+            />
+          </div>
+          <div className="inputgroup-card">
+            <label htmlFor="cvc">Cód. Segurança</label>
+            <input
+              id="cvc"
+              type="number"
+              name="cvc"
+              placeholder="CVC"
+              value={state.cvc}
+              onChange={handleInputChange}
+              onFocus={handleInputFocus}
+            />
+          </div>
         </div>
       </form>
     </div>

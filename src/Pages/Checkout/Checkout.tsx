@@ -38,7 +38,7 @@ const Checkout = () => {
       ),
     },
     {
-      title: "Pagamentos",
+      title: "Pagamento",
       component: <CheckoutPagamento />,
     },
   ];

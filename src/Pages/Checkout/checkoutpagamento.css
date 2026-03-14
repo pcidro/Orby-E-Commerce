@@ -1,0 +1,41 @@
+.payment-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px;
+  border: 2px solid #e5e5e5;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+  background: #fff;
+}
+
+.payment-option:hover {
+  border-color: #333;
+}
+
+.payment-option input {
+  display: none;
+}
+
+.payment-option:has(input:checked) {
+  border-color: #000;
+  background: #f5f5f5;
+}
+
+.payment-method-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.img-payment {
+  width: 50px;
+}
+
+@media (max-width: 750px) {
+  .payment-method-container {
+    margin-bottom: 20px;
+    flex-direction: column;
+  }
+}

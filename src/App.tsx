@@ -1,12 +1,12 @@
 import RoutePage from "./RoutePage";
 import { UiContextProvider } from "./Context";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import "./css/App.css";
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <UiContextProvider>
         <Toaster
           position="top-center"
@@ -46,7 +46,7 @@ const App = () => {
         />
         <RoutePage />
       </UiContextProvider>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 

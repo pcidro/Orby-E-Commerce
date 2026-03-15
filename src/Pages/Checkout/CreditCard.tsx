@@ -41,6 +41,7 @@ const CreditCard = () => {
             id="number"
             type="number"
             name="number"
+            required
             placeholder="0000 0000 0000 0000"
             value={state.number}
             onChange={handleInputChange}
@@ -52,6 +53,7 @@ const CreditCard = () => {
           <label htmlFor="name">Nome no Cartão</label>
           <input
             id="name"
+            required
             type="text"
             name="name"
             placeholder="Ex: 'Paulo Cidro'"
@@ -66,6 +68,7 @@ const CreditCard = () => {
             <label htmlFor="expiry">Validade</label>
             <input
               id="expiry"
+              required
               type="text"
               name="expiry"
               placeholder="MM/AA"
@@ -79,6 +82,7 @@ const CreditCard = () => {
             <input
               id="cvc"
               type="number"
+              required
               name="cvc"
               placeholder="CVC"
               value={state.cvc}

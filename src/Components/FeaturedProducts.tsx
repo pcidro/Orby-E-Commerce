@@ -2,7 +2,6 @@ import React from "react";
 import arrowRight from "../assets/arrowright.svg";
 import Context from "../Contextos/Context";
 import type { IProducts } from "../Types";
-import toast from "react-hot-toast";
 import Cart from "../assets/cart.svg";
 import { Link } from "react-router-dom";
 import SizeModal from "./SizeModal";

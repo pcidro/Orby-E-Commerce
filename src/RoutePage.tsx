@@ -11,6 +11,7 @@ import Search from "./Pages/Search";
 import ProtectedRoute from "./ProtectedRoute";
 import FinishOrder from "./Pages/FinishOrder";
 import Pedidos from "./Pages/Pedidos";
+import LoginCreate from "./Pages/Login/LoginCreate";
 
 const RoutePage = () => {
   return (

@@ -1,16 +1,23 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import "./loginform.css";
 import { auth, provider } from "../../firebase";
 import GoogleIcon from "../../assets/google.svg";
-import { signInWithPopup } from "firebase/auth";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = (e: React.SubmitEvent) => {
+  const handleSubmit = async (e: React.SubmitEvent) => {
     e.preventDefault();
+    try {
+      await signInWithEmailAndPassword(auth, email, senha);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleGoogleLogin = async () => {

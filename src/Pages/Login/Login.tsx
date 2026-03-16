@@ -2,7 +2,7 @@ import React from "react";
 import LoginForm from "./LoginForm";
 import LoginCreate from "./LoginCreate";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
-import Context from "../../Context";
+import Context from "../../Contextos/Context";
 
 const Login = () => {
   const location = useLocation();

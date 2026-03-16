@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import type { IProducts, IApiResponse } from "../Types";
 import "../css/productdetails.css";
 import Cart from "../assets/cart.svg";
-import Context from "../Context";
+import Context from "../Contextos/Context";
 import toast from "react-hot-toast";
 
 const ProductDetails = () => {
@@ -15,7 +15,7 @@ const ProductDetails = () => {
 
   useEffect(() => {
     async function getProduct() {
-      const res = await fetch(`/sneakers.json`);
+      const res = await fetch(`${import.meta.env.BASE_URL}sneakers.json`);
       const data: IApiResponse = await res.json();
       const product = data.products.find((item) => item.id === Number(id));
       setProduto(product || null);

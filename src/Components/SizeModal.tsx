@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import type { IProducts } from "../Types";
 
-import Context from "../Context";
+import Context from "../Contextos/Context";
 import Cart from "../assets/cart2.svg";
 import toast from "react-hot-toast";
 import "../css/sizeModal.css";

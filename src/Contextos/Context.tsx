@@ -1,6 +1,6 @@
-import React, { type PropsWithChildren } from "react";
-import type { IProducts } from "./Types";
-import { auth } from "./firebase";
+import React, { useContext, type PropsWithChildren } from "react";
+import type { IProducts, cartProps } from "../Types";
+import { auth } from "../firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import toast from "react-hot-toast";
 import type { User } from "firebase/auth";
@@ -24,19 +24,6 @@ interface iUiContext {
   handleLogout: () => void;
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
   handleOpenModal: (product: IProducts) => void;
-}
-
-interface cartProps {
-  id: number;
-  title: string;
-  description: string;
-  category: string;
-  image: string;
-  price: number;
-  amount: number;
-  total: number;
-  size: string;
-  color: string;
 }
 
 type usuarioProps = null | User;

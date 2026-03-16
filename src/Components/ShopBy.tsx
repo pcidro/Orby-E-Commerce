@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 
 const ShopBy = () => {
   const brands = [
-    { name: "Nike", image: "/products/nike2.png" },
-    { name: "Adidas", image: "/products/adidas2.png" },
-    { name: "Puma", image: "/products/puma1.png" },
-    { name: "Jordan", image: "/products/jordan1.png" },
-    { name: "Converse", image: "/products/converse1.png" },
+    { name: "Nike", image: "products/nike2.png" },
+    { name: "Adidas", image: "products/adidas2.png" },
+    { name: "Puma", image: "products/puma1.png" },
+    { name: "Jordan", image: "products/jordan1.png" },
+    { name: "Converse", image: "products/converse1.png" },
   ];
 
   return (

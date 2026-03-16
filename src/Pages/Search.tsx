@@ -3,7 +3,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import type { IProducts } from "../Types";
 import type { IApiResponse } from "../Types";
 import Cart from "../assets/cart.svg";
-import Context from "../Context";
+import Context from "../Contextos/Context";
 import arrowRight from "../assets/arrowright.svg";
 import SizeModal from "../Components/SizeModal";
 
@@ -21,7 +21,7 @@ const Search = () => {
   useEffect(() => {
     async function getSearch() {
       try {
-        const res = await fetch("/sneakers.json");
+        const res = await fetch(`${import.meta.env.BASE_URL}sneakers.json`);
         const data: IApiResponse = await res.json();
         if (query) {
           const filtered = data.products.filter(

@@ -3,7 +3,7 @@ import Orby from "../assets/Orbylogo.png";
 import "../css/header.css";
 import Cart from "../assets/cart2.svg";
 import searchIcon from "../assets/search.svg";
-import Context from "../Context";
+import Context from "../Contextos/Context";
 import { Link, useNavigate } from "react-router-dom";
 import User from "../assets/user.svg";
 import arrowBotton from "../assets/chevrondown.svg";

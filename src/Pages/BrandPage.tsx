@@ -6,7 +6,7 @@ import arrowRight from "../assets/arrowright.svg";
 import "../css/brandpage.css";
 
 import type { IProducts, IApiResponse } from "../Types";
-import Context from "../Context";
+import Context from "../Contextos/Context";
 import SizeModal from "../Components/SizeModal";
 
 const BrandPage = () => {
@@ -15,7 +15,7 @@ const BrandPage = () => {
   const { brandName } = useParams();
   useEffect(() => {
     async function getProducts() {
-      const res = await fetch("/sneakers.json");
+      const res = await fetch(`${import.meta.env.BASE_URL}sneakers.json`);
       const data: IApiResponse = await res.json();
       setProdutos(data.products);
     }

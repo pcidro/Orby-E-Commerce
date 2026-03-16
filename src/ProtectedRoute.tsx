@@ -1,5 +1,5 @@
 import React, { type PropsWithChildren } from "react";
-import Context from "./Context";
+import Context from "./Contextos/Context";
 import { Navigate, useLocation } from "react-router-dom";
 
 const ProtectedRoute = ({ children }: PropsWithChildren) => {

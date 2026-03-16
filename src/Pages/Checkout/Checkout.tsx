@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Context from "../../Context";
+import Context from "../../Contextos/Context";
 import CheckoutForm from "./CheckoutForm";
 import CheckoutPagamento from "./CheckoutPagamento";
 import "./checkout.css";

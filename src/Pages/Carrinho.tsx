@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "../css/carrinho.css";
-import Context from "../Context";
+import Context from "../Contextos/Context";
 import { Link } from "react-router-dom";
 import arrowRight from "../assets/arrowright.svg";
 

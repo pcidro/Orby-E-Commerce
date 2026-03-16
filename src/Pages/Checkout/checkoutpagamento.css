@@ -33,6 +33,10 @@
   width: 50px;
 }
 
+.qrcode {
+  width: 120px;
+}
+
 @media (max-width: 750px) {
   .payment-method-container {
     margin-bottom: 20px;

@@ -15,6 +15,19 @@ export interface IProducts {
   releaseYear: number;
 }
 
+export interface cartProps {
+  id: number;
+  title: string;
+  description: string;
+  category: string;
+  image: string;
+  price: number;
+  amount: number;
+  total: number;
+  size: string;
+  color: string;
+}
+
 export interface IApiResponse {
   products: IProducts[];
 }

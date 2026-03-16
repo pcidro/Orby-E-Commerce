@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import type { IProducts } from "../Types";
 import type { IApiResponse } from "../Types";
 import "../css/home.css";
-import Context from "../Context";
+import Context from "../Contextos/Context";
 import Hero from "../Components/Hero";
 import Perks from "../Components/Perks";
 import MainBannerhome from "../Components/MainBannerhome";
@@ -27,7 +27,7 @@ const Home = () => {
   useEffect(() => {
     async function getProducts() {
       try {
-        const res = await fetch("/sneakers.json");
+        const res = await fetch(`${import.meta.env.BASE_URL}sneakers.json`);
         const data: IApiResponse = await res.json();
         setProdutos(data.products);
       } catch (error) {

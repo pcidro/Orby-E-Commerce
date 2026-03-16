@@ -21,7 +21,7 @@ interface OrderContextData {
 
 const OrderContext = createContext<OrderContextData | null>(null);
 
-export const UseOrders = () => {
+export const Orders = () => {
   const context = useContext(OrderContext);
   if (!context) throw new Error("useOrders deve estar dentro do OrderProvider");
   return context;
@@ -55,4 +55,4 @@ export const OrderProvider = ({ children }: PropsWithChildren) => {
   );
 };
 
-export default UseOrders;
+export default Orders;

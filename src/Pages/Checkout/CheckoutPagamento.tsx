@@ -6,8 +6,11 @@ import "./checkoutpagamento.css";
 import qrCodeFake from "../../assets/qrcodefake.svg";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-
+import Context from "../../Contextos/Context";
+import Orders from "../../Contextos/OrderContext";
 const CheckoutPagamento = () => {
+  const { cart, total, setCart } = Context();
+  const { saveOrder } = Orders();
   const [cardData, setCardData] = useState({
     number: "",
     expiry: "",
@@ -39,6 +42,8 @@ const CheckoutPagamento = () => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
+      saveOrder(cart, total);
+      setCart([]);
       toast.success("Pagamento realizado");
       navigate("/finish");
     }, 3000);

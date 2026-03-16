@@ -10,6 +10,7 @@ import Checkout from "./Pages/Checkout/Checkout";
 import Search from "./Pages/Search";
 import ProtectedRoute from "./ProtectedRoute";
 import FinishOrder from "./Pages/FinishOrder";
+import Pedidos from "./Pages/Pedidos";
 
 const RoutePage = () => {
   return (
@@ -26,6 +27,7 @@ const RoutePage = () => {
           element={<ProtectedRoute>{<Checkout />}</ProtectedRoute>}
         />
         <Route path="/search" element={<Search />} />
+        <Route path="/pedidos" element={<Pedidos />} />
         <Route path="/finish" element={<FinishOrder />} />
       </Routes>
       <Footer />

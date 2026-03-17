@@ -4,10 +4,12 @@ import { HashRouter } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import "./css/App.css";
 import { OrderProvider } from "./Contextos/OrderContext";
+import ScrollToTop from "./Components/ScroltoTop";
 
 const App = () => {
   return (
     <HashRouter>
+      <ScrollToTop />
       <UiContextProvider>
         <OrderProvider>
           <Toaster

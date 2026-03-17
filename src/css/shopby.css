@@ -98,16 +98,6 @@
     margin: 30px 0;
   }
 
-  .shop-by-brand h1 {
-    font-size: 24px;
-    margin-bottom: 24px;
-  }
-
-  .brands-grid {
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 14px;
-  }
-
   .brand-link {
     padding: 16px 12px;
     border-radius: 10px;
@@ -154,11 +144,6 @@
   .brand-link span {
     font-size: 12px;
     font-weight: 700;
-  }
-
-  .brand-link:hover {
-    transform: translateY(-4px) scale(1.005);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
 }
 

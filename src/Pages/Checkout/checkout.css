@@ -77,6 +77,95 @@
   background-color: #522d82;
 }
 
+.resumopedido {
+  align-self: start;
+  max-width: 400px;
+  border: 4px solid #d5d5d5;
+  font-family: "Inter", sans-serif;
+  padding: 32px;
+}
+
+.resumopedido h2 {
+  font-family: "Poppins", sans-serif;
+  font-size: 24px;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+}
+
+.pedido-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+  border-bottom: 1px solid #f0f0f0;
+  padding: 24px 0;
+}
+
+.pedido-item h3 {
+  grid-column: 1 / -1;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+}
+
+.pedido-item strong {
+  color: #111;
+  min-width: 90px;
+}
+
+.pedido-item strong {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.pedido-item p {
+  margin: 4px 0;
+  font-size: 14px;
+  color: #666;
+  display: flex;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+.color-section-resumo {
+  grid-column: 1 / -1;
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.color-label-resumo {
+  color: #666;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.thumbnail-resumo {
+  border: 1px solid #eee;
+  border-radius: 50%;
+  padding: 2px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.thumbnail-resumo {
+  border: 2px solid transparent;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.thumbnail-resumo.active {
+  border-color: black;
+}
+
+.thumbnail-resumo img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
 @media (max-width: 760px) {
   .checkout-container {
     grid-template-columns: 1fr;
@@ -95,5 +184,48 @@
   }
   .step-container h3 {
     font-size: 22px;
+  }
+  .resumopedido {
+    max-width: 100%;
+    padding: 16px;
+    border-width: 2px;
+  }
+
+  .resumopedido h2 {
+    font-size: 18px;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+  }
+
+  .thumbnail-resumo img {
+    width: 65px;
+    height: 65px;
+  }
+
+  .color-label-resumo {
+    font-size: 14px;
+  }
+
+  .pedido-item h3 {
+    font-size: 15px;
+    margin-bottom: 4px;
+    line-height: 1.2;
+  }
+
+  .pedido-item p {
+    font-size: 13px;
+    margin: 2px 0;
+    gap: 4px;
+  }
+
+  .pedido-item strong {
+    min-width: unset;
+    margin-bottom: 0;
+    display: inline;
+  }
+
+  .pedido-item p:last-of-type {
+    margin-top: 5px;
+    font-size: 14px;
   }
 }

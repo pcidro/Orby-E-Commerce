@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Orders from "../Contextos/OrderContext";
+import "../css/finishorder.css";
+import type { Date } from "firebase/ai";
 
 const FinishOrder = () => {
   const { orders } = Orders();
@@ -13,6 +15,18 @@ const FinishOrder = () => {
     }
   }, [orders, navigate]);
 
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return new Intl.DateTimeFormat("pt-BR", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    }).format(date);
+  };
+
   return (
     <div className="finishOrder">
       <h1>Pedido Finalizado!</h1>
@@ -22,11 +36,11 @@ const FinishOrder = () => {
         <span>
           Código do seu pedido: <strong>{lastOrder.id}</strong>
         </span>
-        <p>Data do pedido: {lastOrder.date}</p>
+        <p>Data do pedido: {formatDate(lastOrder.date)}</p>
 
         <div>
           <p>Para acompanhar o status do seu pedido, acesse:</p>
-          <Link to="/pedidos">Ir para Meus pedidos</Link>
+          <Link to="/pedidos">Meus pedidos</Link>
         </div>
       </div>
     </div>

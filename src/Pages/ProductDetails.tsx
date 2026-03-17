@@ -83,11 +83,11 @@ const ProductDetails = () => {
 
         <div className="color-section">
           <span className="color-label">
-            Cor: <strong>{produto.color}</strong>
+            Cor:<strong>{produto.color}</strong>
           </span>
           <div className="color-thumbnails">
             <div className="thumbnail active">
-              <img src={produto.image} alt={`Cor ${produto.color}`} />
+              <img src={produto.image} />
             </div>
           </div>
         </div>

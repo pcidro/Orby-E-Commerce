@@ -37,6 +37,68 @@
   width: 120px;
 }
 
+.finalizarPedido {
+  font-family: "Inter", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  padding: 18px;
+  background-color: #6839a3;
+  color: #ffffff;
+  border: none;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.2s ease;
+}
+
+.finalizarPedidoPix {
+  font-family: "Inter", sans-serif;
+  padding: 18px;
+  background-color: #6839a3;
+  color: #ffffff;
+  border: none;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.copycode {
+  font-family: "Inter", sans-serif;
+  padding: 18px;
+  color: #252525;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.btns-pix {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.pix-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.pix-container h3 {
+  margin-top: 20px;
+}
+
+.card-container h3 {
+  margin-top: 20px;
+}
+
 @media (max-width: 750px) {
   .payment-method-container {
     margin-bottom: 20px;

@@ -103,12 +103,32 @@ const Checkout = () => {
 
       <div className="resumopedido">
         <h2>Resumo do Pedido</h2>
+
         {cart.map((produto) => (
-          <div>
+          <div className="pedido-item" key={produto.id}>
             <h3>{produto.title}</h3>
-            <p>Tamanho: {produto.size}</p>
-            <p>Quantidade: {produto.amount}</p>
-            <p>Subtotal: R$ {produto.price.toFixed(2)}</p>
+
+            <p>
+              <strong>Tamanho:</strong> {produto.size}
+            </p>
+            <p>
+              <strong>Quantidade:</strong> {produto.amount}
+            </p>
+            <p>
+              <strong>Subtotal:</strong> R$ {produto.price.toFixed(2)}
+            </p>
+
+            <div className="color-section-resumo">
+              <span className="color-label-resumo">
+                <strong>Cor:</strong> {produto.color}
+              </span>
+
+              <div className="color-thumbnails-resumo">
+                <div className="thumbnail active-resumo">
+                  <img src={produto.image} alt={`Cor ${produto.color}`} />
+                </div>
+              </div>
+            </div>
           </div>
         ))}
       </div>

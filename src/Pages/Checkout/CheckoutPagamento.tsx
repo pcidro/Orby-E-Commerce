@@ -85,24 +85,36 @@ const CheckoutPagamento = () => {
       </div>
 
       {method === "credit" && (
-        <div>
+        <div className="card-container">
           <h3>Pague com Cartão de credito</h3>
           <CreditCard onChange={setCardData} />
-          <button disabled={loading} onClick={finishOrder}>
+          <button
+            className="finalizarPedido"
+            disabled={loading}
+            onClick={finishOrder}
+          >
             {loading ? "Processando..." : "Finalizar Pedido"}
           </button>
         </div>
       )}
 
       {method === "pix" && (
-        <div>
+        <div className="pix-container">
           <h3>Pague com Pix</h3>
           <img className="qrcode" src={qrCodeFake} />
-          <button onClick={copyPix}>Copiar código</button>
+          <div className="btns-pix">
+            <button className="copycode" onClick={copyPix}>
+              Copiar código
+            </button>
 
-          <button onClick={finishOrder} disabled={loading}>
-            {loading ? "Processando..." : "Já fiz o pagamento"}
-          </button>
+            <button
+              className="finalizarPedidoPix"
+              onClick={finishOrder}
+              disabled={loading}
+            >
+              {loading ? "Processando..." : "Já fiz o pagamento"}
+            </button>
+          </div>
         </div>
       )}
     </div>

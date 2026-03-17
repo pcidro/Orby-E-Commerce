@@ -6,6 +6,15 @@ import React, {
   type PropsWithChildren,
 } from "react";
 import type { cartProps } from "../Types";
+import { db } from "../firebase";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  orderBy,
+} from "firebase/firestore";
+import toast from "react-hot-toast";
 
 interface Order {
   id: string;
@@ -16,7 +25,7 @@ interface Order {
 
 interface OrderContextData {
   orders: Order[];
-  saveOrder: (items: cartProps[], total: string) => void;
+  saveOrder: (items: cartProps[], total: string) => Promise<void>;
 }
 
 const OrderContext = createContext<OrderContextData | null>(null);
@@ -28,24 +37,44 @@ export const Orders = () => {
 };
 
 export const OrderProvider = ({ children }: PropsWithChildren) => {
-  const [orders, setOrders] = useState<Order[]>(() => {
-    const saved = localStorage.getItem("ordersOrby");
-    return saved ? JSON.parse(saved) : [];
-  });
+  const [orders, setOrders] = useState<Order[]>([]);
+  const ordersCollectionRef = collection(db, "orders");
 
   useEffect(() => {
-    localStorage.setItem("ordersOrby", JSON.stringify(orders));
-  }, [orders]);
+    const fetchOrders = async () => {
+      try {
+        const q = query(ordersCollectionRef, orderBy("date", "desc"));
+        const querySnapshot = await getDocs(q);
+        const loadedOrders = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...(doc.data() as Omit<Order, "id">),
+        })) as Order[];
 
-  function saveOrder(items: cartProps[], total: string) {
-    const newOrder: Order = {
-      id: String(Math.floor(Math.random() * 90000) + 10000),
-      items: [...items],
-      total,
-      date: new Date().toLocaleDateString("pt-BR"),
+        setOrders(loadedOrders);
+      } catch (err) {
+        console.log(err);
+      }
     };
+    fetchOrders();
+  }, [ordersCollectionRef]);
 
-    setOrders((prev) => [newOrder, ...prev]);
+  async function saveOrder(items: cartProps[], total: string) {
+    try {
+      const newOrderData = {
+        items: [...items],
+        total,
+        date: new Date().toISOString(),
+      };
+      const docRef = await addDoc(ordersCollectionRef, newOrderData);
+      const newOrder: Order = {
+        id: docRef.id,
+        ...newOrderData,
+      };
+      setOrders((prev) => [newOrder, ...prev]);
+    } catch (error) {
+      console.error("Erro ao salvar pedido no Firebase:", error);
+      toast.error("Houve um erro ao salvar seu pedido.");
+    }
   }
 
   return (

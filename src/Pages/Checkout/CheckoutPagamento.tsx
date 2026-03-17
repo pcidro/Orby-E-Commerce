@@ -30,7 +30,7 @@ const CheckoutPagamento = () => {
     toast.success("Código Pix copiado!");
   }
 
-  function finishOrder() {
+  async function finishOrder() {
     if (method === "credit" && !validateCard()) {
       toast.error("Preencha todos os dados do cartão");
       return;
@@ -40,12 +40,17 @@ const CheckoutPagamento = () => {
       return;
     }
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      saveOrder(cart, total);
-      setCart([]);
-      toast.success("Pagamento realizado");
-      navigate("/finish");
+    setTimeout(async () => {
+      try {
+        await saveOrder(cart, total);
+        setCart([]);
+        toast.success("Pagamento realizado");
+        navigate("/finish");
+      } catch (error) {
+        toast.error("Erro ao processar pedido. Tente novamente.");
+      } finally {
+        setLoading(false);
+      }
     }, 3000);
   }
 

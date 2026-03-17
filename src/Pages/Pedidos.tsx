@@ -17,6 +17,12 @@ const Pedidos = () => {
 
   return (
     <section className="meus-pedidos-container">
+      {orders.length === 0 && (
+        <div className="noorder">
+          <p>Você ainda não possui nenhum pedido!</p>
+          <Link to="/">Veja nossos produtos</Link>
+        </div>
+      )}
       <h1 className="titulo-pedidos">Seus pedidos</h1>
 
       <div className="lista-pedidos">

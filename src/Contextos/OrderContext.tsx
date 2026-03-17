@@ -6,16 +6,16 @@ import React, {
   type PropsWithChildren,
 } from "react";
 import type { cartProps } from "../Types";
-import { db } from "../firebase";
+import { db, auth } from "../firebase";
 import {
   collection,
   addDoc,
   getDocs,
   query,
+  where,
   orderBy,
 } from "firebase/firestore";
 import toast from "react-hot-toast";
-
 interface Order {
   id: string;
   items: cartProps[];
@@ -39,11 +39,20 @@ export const Orders = () => {
 export const OrderProvider = ({ children }: PropsWithChildren) => {
   const [orders, setOrders] = useState<Order[]>([]);
   const ordersCollectionRef = collection(db, "orders");
+  const user = auth.currentUser;
 
   useEffect(() => {
     const fetchOrders = async () => {
+      if (!user) {
+        setOrders([]);
+        return;
+      }
       try {
-        const q = query(ordersCollectionRef, orderBy("date", "desc"));
+        const q = query(
+          ordersCollectionRef,
+          where("userId", "==", user.uid),
+          orderBy("date", "desc"),
+        );
         const querySnapshot = await getDocs(q);
         const loadedOrders = querySnapshot.docs.map((doc) => ({
           id: doc.id,
@@ -56,11 +65,12 @@ export const OrderProvider = ({ children }: PropsWithChildren) => {
       }
     };
     fetchOrders();
-  }, [ordersCollectionRef]);
+  }, [user, ordersCollectionRef]);
 
   async function saveOrder(items: cartProps[], total: string) {
     try {
       const newOrderData = {
+        userId: user?.uid,
         items: [...items],
         total,
         date: new Date().toISOString(),

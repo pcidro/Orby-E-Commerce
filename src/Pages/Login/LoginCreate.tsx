@@ -2,11 +2,16 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./loginform.css";
 import { auth, provider } from "../../firebase";
-import { signInWithPopup, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  signInWithPopup,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
 import GoogleIcon from "../../assets/google.svg";
 
 const LoginCreate = () => {
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [senha, setSenha] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState("");
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
@@ -18,7 +23,15 @@ const LoginCreate = () => {
     }
 
     try {
-      await createUserWithEmailAndPassword(auth, email, senha);
+      const userCredencial = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        senha,
+      );
+      const user = userCredencial.user;
+      await updateProfile(user, {
+        displayName: name,
+      });
     } catch (error) {
       console.error("Erro ao cadastrar:", error);
     }
@@ -41,6 +54,18 @@ const LoginCreate = () => {
               Junte-se à <span className="orby-purple">Orby</span> inserindo
               seus dados abaixo para começar.
             </p>
+          </div>
+
+          <div className="input-group-login">
+            <label htmlFor="usuario">Nome</label>
+            <input
+              type="text"
+              id="usuario"
+              value={name}
+              onChange={({ target }) => setName(target.value)}
+              placeholder="Digite seu nome"
+              required
+            />
           </div>
 
           <div className="input-group-login">

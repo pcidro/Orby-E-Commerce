@@ -79,14 +79,6 @@
   color: #111111;
 }
 
-.reviews-container {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
-  font-size: 0.75rem;
-}
-
 .stars {
   color: #111111;
   letter-spacing: 2px;
@@ -206,5 +198,85 @@
 
   .badge-bestseller {
     align-self: flex-start;
+  }
+}
+
+@media (max-width: 700px) {
+  .details-container {
+    display: flex;
+    flex-direction: column;
+    margin: 10px auto;
+    padding: 0 15px;
+    gap: 15px;
+  }
+
+  .product-image-section,
+  .product-info-section {
+    display: contents;
+  }
+
+  .badge-bestseller {
+    order: 1;
+    font-size: 0.75rem;
+    margin-bottom: 5px;
+    align-self: flex-start;
+  }
+
+  .product-title {
+    order: 2;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+
+  .main-image {
+    order: 3;
+    max-width: 200px;
+    height: auto;
+    display: block;
+    margin: 0 auto 15px auto;
+  }
+
+  .price-container {
+    order: 4;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  .product-price {
+    font-size: 1.1rem;
+  }
+
+  .product-description {
+    order: 5;
+    font-size: 0.8rem;
+  }
+  .product-release {
+    order: 6;
+  }
+  .color-section {
+    order: 7;
+  }
+  .size-selector-container {
+    order: 8;
+  }
+  .shipping-info {
+    order: 9;
+  }
+
+  .button-cart-premium {
+    order: 11;
+    padding: 15px;
+    font-size: 0.9rem;
+  }
+
+  .thumbnail {
+    width: 50px;
+    height: 50px;
+  }
+
+  .size-selector {
+    padding: 12px;
+    font-size: 0.85rem;
   }
 }

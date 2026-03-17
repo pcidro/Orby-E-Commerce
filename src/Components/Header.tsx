@@ -75,7 +75,13 @@ const Header = () => {
               className={`header-info ${menuAberto ? "active" : ""}`}
             >
               <img src={User} alt="" />
-              <p>Olá, {usuario.displayName}!</p>
+              <p>
+                Olá,{" "}
+                {usuario.displayName ||
+                  usuario.email?.split("@")[0] ||
+                  "Usuário"}
+                !
+              </p>
               <img
                 className={`arrow-icon ${menuAberto ? "open" : ""}`}
                 src={arrowBotton}

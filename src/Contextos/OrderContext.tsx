@@ -38,7 +38,6 @@ export const Orders = () => {
 
 export const OrderProvider = ({ children }: PropsWithChildren) => {
   const [orders, setOrders] = useState<Order[]>([]);
-  const ordersCollectionRef = collection(db, "orders");
   const user = auth.currentUser;
 
   useEffect(() => {
@@ -49,7 +48,7 @@ export const OrderProvider = ({ children }: PropsWithChildren) => {
       }
       try {
         const q = query(
-          ordersCollectionRef,
+          collection(db, "orders"),
           where("userId", "==", user.uid),
           orderBy("date", "desc"),
         );
@@ -65,7 +64,7 @@ export const OrderProvider = ({ children }: PropsWithChildren) => {
       }
     };
     fetchOrders();
-  }, [user, ordersCollectionRef]);
+  }, [user]);
 
   async function saveOrder(items: cartProps[], total: string) {
     try {
@@ -75,7 +74,7 @@ export const OrderProvider = ({ children }: PropsWithChildren) => {
         total,
         date: new Date().toISOString(),
       };
-      const docRef = await addDoc(ordersCollectionRef, newOrderData);
+      const docRef = await addDoc(collection(db, "orders"), newOrderData);
       const newOrder: Order = {
         id: docRef.id,
         ...newOrderData,

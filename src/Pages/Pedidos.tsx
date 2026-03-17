@@ -48,7 +48,7 @@ const Pedidos = () => {
 
             <div className="card-pedido-body">
               {order.items.map((item) => (
-                <div className="produto-item" key={item.id}>
+                <div className="produto-item" key={`${order.id}-${item.id}`}>
                   <div className="produto-imagem-wrapper">
                     <img src={item.image} alt={item.title} />
                   </div>

@@ -4,27 +4,67 @@ import "./loginform.css";
 import { auth, provider } from "../../firebase";
 import GoogleIcon from "../../assets/google.svg";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import Context from "../../Contextos/Context";
+import Loader from "../../Helpers/Loader";
+import "../../Helpers/erro.css";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const navigate = useNavigate();
+  const [isAuthenticating, setIsAuthenticating] = useState(false);
+  const { loading, usuario } = Context();
+  const [erro, setErro] = useState<string | null>(null);
+
+  const handleFirebaseError = (code: string) => {
+    switch (code) {
+      case "auth/invalid-credential":
+        return "E-mail ou senha incorretos.";
+      case "auth/user-not-found":
+        return "Usuário não encontrado.";
+      case "auth/wrong-password":
+        return "Senha incorreta.";
+      case "auth/invalid-email":
+        return "E-mail inválido.";
+      case "auth/too-many-requests":
+        return "Muitas tentativas. Tente novamente mais tarde.";
+      default:
+        return "Ocorreu um erro ao fazer login. Tente novamente.";
+    }
+  };
+
+  if (loading) return <Loader />;
+  if (usuario) return <Navigate to="/" />;
 
   const handleSubmit = async (e: React.SubmitEvent) => {
     e.preventDefault();
+    setIsAuthenticating(true);
+    setErro(null);
     try {
       await signInWithEmailAndPassword(auth, email, senha);
       navigate("/");
     } catch (error) {
-      console.log(error);
+      if (error !== null && typeof error === "object" && "code" in error) {
+        const firebaseError = error as { code: string };
+        setErro(handleFirebaseError(firebaseError.code));
+      }
+    } finally {
+      setIsAuthenticating(false);
     }
   };
 
   const handleGoogleLogin = async () => {
+    setIsAuthenticating(true);
     try {
       await signInWithPopup(auth, provider);
     } catch (error) {
-      console.error("Erro no Google:", error);
+      if (error !== null && typeof error === "object" && "code" in error) {
+        const firebaseError = error as { code: string };
+        setErro(handleFirebaseError(firebaseError.code));
+        console.error("Erro no Google:", error);
+      }
+    } finally {
+      setIsAuthenticating(false);
     }
   };
 
@@ -64,6 +104,7 @@ const LoginForm = () => {
               required
             />
           </div>
+          {erro && <span className="error-helper">{erro}</span>}
 
           <div className="actions">
             <Link to="perdeu" className="forgot-pass">
@@ -71,8 +112,8 @@ const LoginForm = () => {
             </Link>
           </div>
 
-          <button type="submit" className="entrar">
-            ENTRAR
+          <button type="submit" className="entrar" disabled={isAuthenticating}>
+            {isAuthenticating ? "ENTRANDO..." : "ENTRAR"}
           </button>
 
           <div className="divider">

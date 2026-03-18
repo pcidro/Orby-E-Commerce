@@ -5,6 +5,7 @@ import "../css/productdetails.css";
 import Cart from "../assets/cart.svg";
 import Context from "../Contextos/Context";
 import toast from "react-hot-toast";
+import Loader from "../Helpers/Loader";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -24,11 +25,7 @@ const ProductDetails = () => {
   }, [id]);
 
   if (!produto) {
-    return (
-      <div className="loading-container">
-        <p>Carregando os detalhes do produto...</p>
-      </div>
-    );
+    return <Loader />;
   }
 
   function handleAddCart(produclicado: IProducts) {

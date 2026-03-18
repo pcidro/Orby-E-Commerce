@@ -91,14 +91,6 @@ const Header = () => {
             {menuAberto && (
               <div className="profile-dropdown">
                 <Link
-                  to="/perfil"
-                  onClick={() => setMenuAberto(false)}
-                  className="dropdown-item"
-                >
-                  <img src={meuPerfil} alt="" />
-                  Meu Perfil
-                </Link>
-                <Link
                   to="/pedidos"
                   onClick={() => setMenuAberto(false)}
                   className="dropdown-item"

@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+
 import "../css/footer.css";
 import orbyBlack from "../assets/orbyblack.png";
 import appleStore from "../assets/applestore.svg";
 import GooglePlay from "../assets/googleplay.svg";
+import Context from "../Contextos/Context";
 
 const Footer = () => {
+  const { usuario } = Context();
+
   return (
     <footer className="footer-bg">
       <div className="footer">
@@ -14,17 +19,11 @@ const Footer = () => {
         </div>
 
         <div className="footer-links">
-          <h2>Sobre</h2>
+          <h2>Contato</h2>
           <ul>
-            <li>
-              <a href="/sobre-nos">Sobre Nós</a>
-            </li>
-            <li>
-              <a href="/contato">Entre em contato</a>
-            </li>
-            <li>
-              <a href="/privacidade">Política de Privacidade</a>
-            </li>
+            <li>Email: contato@orby.com.br</li>
+            <li>Telefone: (11) 99999-9999</li>
+            <li>Localização: Rua 123 - São Paulo, SP</li>
           </ul>
         </div>
 
@@ -32,20 +31,22 @@ const Footer = () => {
           <h2>Minha Conta</h2>
           <ul>
             <li>
-              <a href="/carrinho">Ver Carrinho</a>
+              <Link to="/carrinho">Ver Carrinho</Link>
             </li>
             <li>
-              <a href="/login">Entrar</a>
+              <Link to="/pedidos">Meus Pedidos</Link>
             </li>
-            <li>
-              <a href="/ajuda">Ajuda</a>
-            </li>
+            {!usuario && (
+              <li>
+                <Link to="/login">Entrar</Link>
+              </li>
+            )}
           </ul>
         </div>
 
         <div className="app-section">
           <h3>Instale o nosso Aplicativo e obtenha descontos exclusivos!</h3>
-          <p>Disponivel para IOS e Android</p>
+          <p>Disponível para IOS e Android</p>
           <div className="app-badges">
             <a
               href="https://apps.apple.com"

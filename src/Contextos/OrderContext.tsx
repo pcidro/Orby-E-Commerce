@@ -26,6 +26,8 @@ interface Order {
 interface OrderContextData {
   orders: Order[];
   saveOrder: (items: cartProps[], total: string) => Promise<void>;
+  isNewOrder: boolean;
+  setIsNewOrder: (value: boolean) => void;
 }
 
 const OrderContext = createContext<OrderContextData | null>(null);
@@ -38,6 +40,7 @@ export const Orders = () => {
 
 export const OrderProvider = ({ children }: PropsWithChildren) => {
   const [orders, setOrders] = useState<Order[]>([]);
+  const [isNewOrder, setIsNewOrder] = useState(false);
   const user = auth.currentUser;
 
   useEffect(() => {
@@ -92,6 +95,7 @@ export const OrderProvider = ({ children }: PropsWithChildren) => {
         ...newOrderData,
       };
       setOrders((prev) => [newOrder, ...prev]);
+      setIsNewOrder(true);
     } catch (error) {
       console.error("Erro ao salvar pedido no Firebase:", error);
       toast.error("Houve um erro ao salvar seu pedido.");
@@ -99,7 +103,9 @@ export const OrderProvider = ({ children }: PropsWithChildren) => {
   }
 
   return (
-    <OrderContext.Provider value={{ orders, saveOrder }}>
+    <OrderContext.Provider
+      value={{ orders, saveOrder, isNewOrder, setIsNewOrder }}
+    >
       {children}
     </OrderContext.Provider>
   );

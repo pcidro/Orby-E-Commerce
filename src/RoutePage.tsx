@@ -27,9 +27,16 @@ const RoutePage = () => {
           path="/checkout"
           element={<ProtectedRoute>{<Checkout />}</ProtectedRoute>}
         />
+        <Route
+          path="/finish"
+          element={
+            <ProtectedRoute>
+              <FinishOrder />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/search" element={<Search />} />
         <Route path="/pedidos" element={<Pedidos />} />
-        <Route path="/finish" element={<FinishOrder />} />
       </Routes>
       <Footer />
     </>

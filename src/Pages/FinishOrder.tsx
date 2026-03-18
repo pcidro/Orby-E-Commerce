@@ -1,19 +1,35 @@
-import React, { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useRef } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Orders from "../Contextos/OrderContext";
 import "../css/finishorder.css";
-import type { Date } from "firebase/ai";
 
 const FinishOrder = () => {
-  const { orders } = Orders();
+  const { orders, setIsNewOrder, isNewOrder } = Orders();
+  console.log("Estado de isNewOrder:", isNewOrder);
   const navigate = useNavigate();
+  const location = useLocation();
+  const currentPath = useRef(location.pathname);
+
   const lastOrder = orders[0];
 
   useEffect(() => {
-    if (orders.length === 0) {
-      navigate("/");
+    if (!isNewOrder) {
+      navigate("/", { replace: true });
+      return;
     }
-  }, [orders, navigate]);
+
+    return () => {
+      if (
+        window.location.hash.replace("#", "") !== currentPath.current &&
+        window.location.pathname !== currentPath.current
+      ) {
+        setIsNewOrder(false);
+      }
+    };
+  }, [isNewOrder, navigate, setIsNewOrder]);
+  if (!isNewOrder || !lastOrder) {
+    return null;
+  }
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);

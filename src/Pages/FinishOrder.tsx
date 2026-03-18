@@ -27,6 +27,9 @@ const FinishOrder = () => {
     }).format(date);
   };
 
+  if (!lastOrder) {
+    return <p>Carregando seu pedido...</p>;
+  }
   return (
     <div className="finishOrder">
       <h1>Pedido Finalizado!</h1>

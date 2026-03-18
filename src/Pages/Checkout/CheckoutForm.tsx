@@ -44,6 +44,9 @@ const CheckoutForm = ({ adressData, setAddressData }: FormData) => {
 
   useEffect(() => {
     async function getCep() {
+      if (adressData.cep.length === 0) {
+        return;
+      }
       const res = await fetch(
         `https://viacep.com.br/ws/${adressData.cep}/json/`,
       );

@@ -41,35 +41,47 @@ export const OrderProvider = ({ children }: PropsWithChildren) => {
   const user = auth.currentUser;
 
   useEffect(() => {
-    const fetchOrders = async () => {
-      if (!user) {
-        setOrders([]);
-        return;
-      }
-      try {
-        const q = query(
-          collection(db, "orders"),
-          where("userId", "==", user.uid),
-          orderBy("date", "desc"),
-        );
-        const querySnapshot = await getDocs(q);
-        const loadedOrders = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...(doc.data() as Omit<Order, "id">),
-        })) as Order[];
+    const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+      if (currentUser) {
+        const fetchOrders = async () => {
+          try {
+            const q = query(
+              collection(db, "orders"),
+              where("userId", "==", currentUser.uid),
+              orderBy("date", "desc"),
+            );
 
-        setOrders(loadedOrders);
-      } catch (err) {
-        console.log(err);
+            const querySnapshot = await getDocs(q);
+            const loadedOrders = querySnapshot.docs.map((doc) => ({
+              id: doc.id,
+              ...(doc.data() as Omit<Order, "id">),
+            })) as Order[];
+
+            setOrders(loadedOrders);
+          } catch (err) {
+            console.error("Erro ao carregar pedidos:", err);
+          }
+        };
+
+        fetchOrders();
+      } else {
+        setOrders([]);
       }
-    };
-    fetchOrders();
-  }, [user]);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   async function saveOrder(items: cartProps[], total: string) {
+    const currentUser = auth.currentUser;
+
+    if (!currentUser) {
+      toast.error("Usuário não autenticado!");
+      return;
+    }
     try {
       const newOrderData = {
-        userId: user?.uid,
+        userId: currentUser.uid,
         items: [...items],
         total,
         date: new Date().toISOString(),

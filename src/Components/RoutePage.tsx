@@ -11,13 +11,16 @@ import Search from "./Pages/Search";
 import ProtectedRoute from "./ProtectedRoute";
 import FinishOrder from "./Pages/FinishOrder";
 import Pedidos from "./Pages/Pedidos";
+import { Context } from "./Contextos/Context";
 import SideCart from "./Components/SideCart";
 
 const RoutePage = () => {
+  const { sideCart } = Context();
+
   return (
     <>
       <Header />
-      <SideCart />
+      {sideCart && <SideCart />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/carrinho" element={<Carrinho />} />

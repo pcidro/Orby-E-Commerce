@@ -84,6 +84,7 @@ export const UiContextProvider = ({ children }: PropsWithChildren) => {
       };
       setCart(cartList);
       totalResultCart(cartList);
+      SetSideCart(true);
       return;
     }
     const data = {
@@ -91,9 +92,9 @@ export const UiContextProvider = ({ children }: PropsWithChildren) => {
       amount: 1,
       total: newItem.price,
     };
-
     setCart((products) => [...products, data]);
     totalResultCart([...cart, data]);
+    SetSideCart(true);
   }
 
   function increaseItem(id: number, size: string) {

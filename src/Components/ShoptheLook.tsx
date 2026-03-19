@@ -26,7 +26,7 @@ const ShoptheLook = () => {
             </div>
             <div className="dividerlook"></div>
             <Link className="link-shopthelook" to={`/produto/3`}>
-              Comprar esse Sneaker
+              Comprar
             </Link>
           </div>
         </div>
@@ -40,7 +40,7 @@ const ShoptheLook = () => {
             </div>
             <div className="dividerlook"></div>
             <Link className="link-shopthelook" to={`/produto/9`}>
-              Comprar esse Sneaker
+              Comprar
             </Link>
           </div>
         </div>
@@ -54,7 +54,7 @@ const ShoptheLook = () => {
             </div>
             <div className="dividerlook"></div>
             <Link className="link-shopthelook" to={`/produto/16`}>
-              Comprar esse Sneaker
+              Comprar
             </Link>
           </div>
         </div>
@@ -69,7 +69,7 @@ const ShoptheLook = () => {
             </div>
             <div className="dividerlook"></div>
             <Link className="link-shopthelook" to={`/produto/4`}>
-              Comprar esse Sneaker
+              Comprar
             </Link>
           </div>
         </div>

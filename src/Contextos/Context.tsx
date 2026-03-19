@@ -7,6 +7,8 @@ import type { User } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
 interface iUiContext {
+  sideCart: boolean;
+  SetSideCart: React.Dispatch<React.SetStateAction<boolean>>;
   loading: boolean;
   modal: boolean;
   selectedProduct: IProducts | null;
@@ -47,6 +49,7 @@ export const UiContextProvider = ({ children }: PropsWithChildren) => {
   const [total, setTotal] = React.useState("");
   const navigate = useNavigate();
   const [modal, setModal] = React.useState(false);
+  const [sideCart, SetSideCart] = React.useState(false);
   const [selectedProduct, setSelectedProduct] =
     React.useState<IProducts | null>(null);
 
@@ -88,6 +91,7 @@ export const UiContextProvider = ({ children }: PropsWithChildren) => {
       amount: 1,
       total: newItem.price,
     };
+
     setCart((products) => [...products, data]);
     totalResultCart([...cart, data]);
   }
@@ -174,6 +178,8 @@ export const UiContextProvider = ({ children }: PropsWithChildren) => {
         usuario,
         handleLogout,
         setModal,
+        sideCart,
+        SetSideCart,
       }}
     >
       {children}

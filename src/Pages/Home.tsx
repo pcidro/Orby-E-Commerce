@@ -10,10 +10,11 @@ import ShopBy from "../Components/ShopBy";
 import FeaturedProducts from "../Components/FeaturedProducts";
 import NewProducts from "../Components/NewProducts";
 import SizeModal from "../Components/SizeModal";
+import ShoptheLook from "../Components/ShoptheLook";
 
 const Home = () => {
   const [produtos, setProdutos] = useState<IProducts[] | []>([]);
-  const { modal, setModal, selectedProduct, handleOpenModal } = Context();
+  const { modal, setModal, selectedProduct, SetSideCart, sideCart } = Context();
   const ProductsRef = useRef<null | HTMLDivElement>(null);
   const scrollToSection = () => {
     if (ProductsRef.current) {
@@ -54,6 +55,7 @@ const Home = () => {
       {modal && selectedProduct && (
         <SizeModal product={selectedProduct} onClose={() => setModal(false)} />
       )}
+      <ShoptheLook />
     </>
   );
 };

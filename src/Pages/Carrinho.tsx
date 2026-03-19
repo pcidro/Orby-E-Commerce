@@ -26,7 +26,7 @@ const Carrinho = () => {
             </div>
 
             <div className="produto-preco">
-              <span>Price:</span>
+              <span>Preço</span>
               <strong>{produto.price}</strong>
             </div>
 

@@ -280,3 +280,18 @@
     font-size: 0.85rem;
   }
 }
+
+.empty-message {
+  margin-top: 2rem;
+  text-align: center;
+
+  font-size: 1.1rem;
+  font-weight: 500;
+  width: 100%;
+  color: #666;
+  padding: 1.5rem;
+  border: 1px dashed #ddd;
+  border-radius: 8px;
+
+  background-color: #fafafa;
+}

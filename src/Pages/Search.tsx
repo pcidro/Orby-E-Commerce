@@ -11,8 +11,7 @@ const Search = () => {
   const [searchParams] = useSearchParams();
   const [produtos, setProdutos] = useState<IProducts[]>([]);
   const query = searchParams.get("q");
-  const { addItemCart, modal, handleOpenModal, setModal, selectedProduct } =
-    Context();
+  const { modal, handleOpenModal, setModal, selectedProduct } = Context();
 
   function handleAddCart(produtoclicado: IProducts) {
     handleOpenModal(produtoclicado);
@@ -81,6 +80,9 @@ const Search = () => {
             </li>
           );
         })}
+        {produtos.length === 0 && query && (
+          <p className="empty-message">Nenhum produto encontrado</p>
+        )}
       </ul>
       {modal && selectedProduct && (
         <SizeModal product={selectedProduct} onClose={() => setModal(false)} />

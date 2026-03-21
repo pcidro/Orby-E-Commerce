@@ -7,7 +7,6 @@ import Context from "../Contextos/Context";
 import { Link, useNavigate } from "react-router-dom";
 import User from "../assets/user.svg";
 import arrowBotton from "../assets/chevrondown.svg";
-import meuPerfil from "../assets/meuperfil.svg";
 import pedidos from "../assets/package.svg";
 import logout from "../assets/logout.svg";
 
@@ -15,18 +14,28 @@ const Header = () => {
   const { setSearch, cartAmount, usuario, handleLogout } = Context();
   const [inputValue, setInputValue] = useState("");
   const [menuAberto, setMenuAberto] = useState(false);
+  const [searchMobileAberto, setSearchMobileAberto] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+  const searchInputRef = useRef<HTMLInputElement>(null);
+  const searchContainerRef = useRef<HTMLDivElement>(null);
 
   function searchItem() {
     setSearch(inputValue);
     navigate(`/search?q=${inputValue}`);
     setInputValue("");
+    setSearchMobileAberto(false);
   }
 
   const toggleMenu = () => {
     setMenuAberto(!menuAberto);
   };
+
+  useEffect(() => {
+    if (searchMobileAberto && searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  }, [searchMobileAberto]);
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -37,13 +46,20 @@ const Header = () => {
       ) {
         setMenuAberto(false);
       }
+      if (
+        searchMobileAberto &&
+        searchContainerRef.current &&
+        !searchContainerRef.current.contains(e.target as Node)
+      ) {
+        setSearchMobileAberto(false);
+      }
     }
     document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [menuAberto]);
+  }, [menuAberto, searchMobileAberto]);
 
   return (
     <div className="header-bg">
@@ -60,13 +76,35 @@ const Header = () => {
             placeholder="Busque um sneaker..."
             onKeyDown={(e) => e.key === "Enter" && searchItem()}
           />
-          <button
-            className="search-btn"
-            aria-label="Search"
-            onClick={searchItem}
-          >
+          <button className="search-btn" onClick={searchItem}>
             <img src={searchIcon} />
           </button>
+        </div>
+        <div ref={searchContainerRef} className="search-mobile-container">
+          {!searchMobileAberto && (
+            <button
+              onClick={() => setSearchMobileAberto(true)}
+              className="search-mobile-icon"
+            >
+              <img src={searchIcon} />
+            </button>
+          )}
+          {searchMobileAberto && (
+            <div className="search-mobile-input-wrapper">
+              <input
+                ref={searchInputRef}
+                className="search-mobile-input"
+                type="text"
+                value={inputValue}
+                onChange={({ target }) => setInputValue(target.value)}
+                placeholder="Buscar..."
+                onKeyDown={(e) => e.key === "Enter" && searchItem()}
+              />
+              <button className="search-mobile-btn" onClick={searchItem}>
+                <img src={searchIcon} alt="Pesquisar" />
+              </button>
+            </div>
+          )}
         </div>
         {usuario ? (
           <div ref={menuRef} className="user-menu-container">

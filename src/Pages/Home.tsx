@@ -11,6 +11,7 @@ import NewProducts from "../Components/NewProducts";
 import SizeModal from "../Components/SizeModal";
 import ShoptheLook from "../Components/ShoptheLook";
 import CartContext from "../Contextos/CartContext";
+import Newsletter from "../Components/NewsLetter";
 
 const Home = () => {
   const [produtos, setProdutos] = useState<IProducts[] | []>([]);
@@ -57,6 +58,7 @@ const Home = () => {
         <SizeModal product={selectedProduct} onClose={() => setModal(false)} />
       )}
       <ShoptheLook />
+      <Newsletter />
     </>
   );
 };

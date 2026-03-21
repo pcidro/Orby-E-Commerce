@@ -1,0 +1,155 @@
+.orby-newsletter-section {
+  width: 100%;
+  padding: 80px 20px;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.orby-newsletter-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.orby-newsletter-content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.orby-newsletter-text {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.orby-newsletter-headline {
+  font-family: "Poppins", sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.orby-newsletter-description {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #666;
+  margin: 0;
+}
+
+.orby-newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.orby-newsletter-input-wrapper {
+  display: flex;
+  gap: 8px;
+  background: white;
+  padding: 8px;
+  border-radius: 12px;
+  border: 2px solid #e8e8e8;
+  transition: 0.3s;
+}
+
+.orby-newsletter-input-wrapper:focus-within {
+  border-color: #6839a3;
+  box-shadow: 0 0 0 4px rgba(104, 57, 163, 0.1);
+}
+
+.orby-newsletter-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 12px 16px;
+  font-size: 15px;
+  font-family: "Inter", sans-serif;
+}
+
+.orby-newsletter-input::placeholder {
+  color: #999;
+}
+
+.orby-newsletter-input:disabled {
+  opacity: 0.7;
+}
+
+.orby-newsletter-button {
+  padding: 12px 28px;
+  background: #6839a3;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
+  transition: 0.3s;
+  white-space: nowrap;
+}
+
+.orby-newsletter-button:hover:not(:disabled) {
+  background: #5a2e8f;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(104, 57, 163, 0.3);
+}
+
+.orby-newsletter-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.orby-newsletter-button:disabled {
+  opacity: 0.9;
+  cursor: not-allowed;
+}
+
+.orby-newsletter-notice {
+  font-size: 13px;
+  color: #888;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+}
+
+@media (max-width: 768px) {
+  .orby-newsletter-section {
+    padding: 60px 20px;
+  }
+
+  .orby-newsletter-headline {
+    font-size: 28px;
+  }
+
+  .orby-newsletter-input-wrapper {
+    flex-direction: column;
+  }
+
+  .orby-newsletter-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .orby-newsletter-section {
+    padding: 40px 16px;
+  }
+
+  .orby-newsletter-headline {
+    font-size: 24px;
+  }
+
+  .orby-newsletter-input {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  .orby-newsletter-button {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}

@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react";
-import Context from "../../Contextos/Context";
+import { useEffect, useState } from "react";
 import CheckoutForm from "./CheckoutForm";
 import CheckoutPagamento from "./CheckoutPagamento";
 import "./checkout.css";
 import toast from "react-hot-toast";
 import type { FormData } from "../../Types";
+import Auth from "../../Contextos/AuthContext";
+import CartContext from "../../Contextos/CartContext";
 
 const Checkout = () => {
-  const { cart, usuario } = Context();
+  const { usuario } = Auth();
+  const { cart } = CartContext();
   const [currentStep, setCurrentStep] = useState(0);
   const [addressData, setAddressData] = useState<FormData>({
     nome: usuario?.displayName || "",

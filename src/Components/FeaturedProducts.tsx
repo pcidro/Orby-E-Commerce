@@ -1,11 +1,10 @@
 import React from "react";
 import arrowRight from "../assets/arrowright.svg";
-import Context from "../Contextos/Context";
 import type { IProducts } from "../Types";
 import Cart from "../assets/cart.svg";
 import { Link } from "react-router-dom";
 import SizeModal from "./SizeModal";
-
+import CartContext from "../Contextos/CartContext";
 interface IFeaturedProjects {
   featuredProductsArray: IProducts[];
   ProductsRef: React.RefObject<HTMLDivElement | null>;
@@ -18,7 +17,7 @@ const FeaturedProducts = ({
   function handleAddCart(produtoclicado: IProducts) {
     handleOpenModal(produtoclicado);
   }
-  const { modal, setModal, selectedProduct, handleOpenModal } = Context();
+  const { modal, setModal, selectedProduct, handleOpenModal } = CartContext();
   return (
     <div ref={ProductsRef} className="container">
       <h1 className="main-title">Produtos em destaque</h1>

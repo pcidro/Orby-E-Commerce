@@ -5,10 +5,10 @@ import "../css/footer.css";
 import orbyBlack from "../assets/orbyblack.png";
 import appleStore from "../assets/applestore.svg";
 import GooglePlay from "../assets/googleplay.svg";
-import Context from "../Contextos/Context";
+import Auth from "../Contextos/AuthContext";
 
 const Footer = () => {
-  const { usuario } = Context();
+  const { usuario } = Auth();
 
   return (
     <footer className="footer-bg">

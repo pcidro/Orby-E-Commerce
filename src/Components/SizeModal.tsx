@@ -2,11 +2,11 @@ import React, { useState } from "react";
 
 import type { IProducts } from "../Types";
 
-import Context from "../Contextos/Context";
 import Cart from "../assets/cart2.svg";
 import toast from "react-hot-toast";
 import "../css/sizeModal.css";
 import Cancel from "../assets/cancel.svg";
+import CartContext from "../Contextos/CartContext";
 
 interface Imodal {
   product: IProducts;
@@ -15,7 +15,7 @@ interface Imodal {
 }
 
 const SizeModal = ({ product, onClose }: Imodal) => {
-  const { addItemCart } = Context();
+  const { addItemCart } = CartContext();
 
   const [selectedSize, setSelectedSize] = useState<string>("");
 

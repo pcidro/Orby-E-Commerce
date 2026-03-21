@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import type { IProducts } from "../Types";
 import type { IApiResponse } from "../Types";
 import "../css/home.css";
-import Context from "../Contextos/Context";
 import Hero from "../Components/Hero";
 import Perks from "../Components/Perks";
 import MainBannerhome from "../Components/MainBannerhome";
@@ -11,10 +10,12 @@ import FeaturedProducts from "../Components/FeaturedProducts";
 import NewProducts from "../Components/NewProducts";
 import SizeModal from "../Components/SizeModal";
 import ShoptheLook from "../Components/ShoptheLook";
+import CartContext from "../Contextos/CartContext";
 
 const Home = () => {
   const [produtos, setProdutos] = useState<IProducts[] | []>([]);
-  const { modal, setModal, selectedProduct, SetSideCart, sideCart } = Context();
+  const { modal, setModal, selectedProduct } = CartContext();
+
   const ProductsRef = useRef<null | HTMLDivElement>(null);
   const scrollToSection = () => {
     if (ProductsRef.current) {

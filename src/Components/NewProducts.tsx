@@ -1,10 +1,10 @@
 import React from "react";
 import arrowRight from "../assets/arrowright.svg";
-import Context from "../Contextos/Context";
 import type { IProducts } from "../Types";
 import Cart from "../assets/cart.svg";
 import { Link } from "react-router-dom";
 import SizeModal from "./SizeModal";
+import CartContext from "../Contextos/CartContext";
 
 interface InewProducts {
   newProductsArray: IProducts[];
@@ -15,7 +15,7 @@ const NewProducts = ({ newProductsArray }: InewProducts) => {
     handleOpenModal(produtoclicado);
   }
 
-  const { modal, setModal, selectedProduct, handleOpenModal } = Context();
+  const { modal, setModal, selectedProduct, handleOpenModal } = CartContext();
 
   return (
     <div className="container">

@@ -4,14 +4,13 @@ import Cart from "../assets/cart.svg";
 import { Link } from "react-router-dom";
 import arrowRight from "../assets/arrowright.svg";
 import "../css/brandpage.css";
-
 import type { IProducts, IApiResponse } from "../Types";
-import Context from "../Contextos/Context";
 import SizeModal from "../Components/SizeModal";
+import CartContext from "../Contextos/CartContext";
 
 const BrandPage = () => {
   const [produtos, setProdutos] = useState<IProducts[]>([]);
-  const { modal, setModal, selectedProduct, handleOpenModal } = Context();
+  const { modal, setModal, selectedProduct, handleOpenModal } = CartContext();
   const { brandName } = useParams();
   useEffect(() => {
     async function getProducts() {

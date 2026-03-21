@@ -1,71 +1,50 @@
-import React, { useContext, type PropsWithChildren } from "react";
+import React, { type PropsWithChildren } from "react";
 import type { IProducts, cartProps } from "../Types";
-import { auth } from "../firebase";
-import { onAuthStateChanged, signOut } from "firebase/auth";
 import toast from "react-hot-toast";
-import type { User } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { Auth } from "./AuthContext";
 
-interface iUiContext {
-  sideCart: boolean;
-  SetSideCart: React.Dispatch<React.SetStateAction<boolean>>;
-  loading: boolean;
-  modal: boolean;
-  selectedProduct: IProducts | null;
-  search: string;
-  setSearch: React.Dispatch<React.SetStateAction<string>>;
-  setSelectedProduct: React.Dispatch<React.SetStateAction<IProducts | null>>;
+interface iCartContext {
   cart: cartProps[];
-  cartAmount: number;
   setCart: React.Dispatch<React.SetStateAction<cartProps[]>>;
+  cartAmount: number;
+  total: string;
   addItemCart: (newItem: IProducts) => void;
   removeItemCart: (product: cartProps) => void;
-  total: string;
-  usuario: User | null;
   increaseItem: (id: number, size: string) => void;
-  handleLogout: () => void;
+  sideCart: boolean;
+  SetSideCart: React.Dispatch<React.SetStateAction<boolean>>;
+  modal: boolean;
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
+  selectedProduct: IProducts | null;
+  setSelectedProduct: React.Dispatch<React.SetStateAction<IProducts | null>>;
   handleOpenModal: (product: IProducts) => void;
 }
 
-type usuarioProps = null | User;
+const CartContextUi = React.createContext<iCartContext | null>(null);
 
-const ContextUi = React.createContext<iUiContext | null>(null);
-
-export const Context = () => {
-  const context = React.useContext(ContextUi);
-  if (!context) throw new Error("useContext deve estar dentro do Provider");
+export const CartContext = () => {
+  const context = React.useContext(CartContextUi);
+  if (!context) throw new Error("useCart deve estar dentro do CartProvider");
   return context;
 };
 
-export const UiContextProvider = ({ children }: PropsWithChildren) => {
-  const [usuario, setUsuario] = React.useState<usuarioProps>(null);
-  const [loading, setLoading] = React.useState(true);
-  const [search, setSearch] = React.useState("");
+export const CartProvider = ({ children }: PropsWithChildren) => {
+  const { usuario } = Auth();
   const [cart, setCart] = React.useState<cartProps[]>(() => {
     const savedCart = localStorage.getItem("cartOrby");
     return savedCart ? JSON.parse(savedCart) : [];
   });
   const [total, setTotal] = React.useState("");
-  const navigate = useNavigate();
   const [modal, setModal] = React.useState(false);
   const [sideCart, SetSideCart] = React.useState(false);
   const [selectedProduct, setSelectedProduct] =
     React.useState<IProducts | null>(null);
-
   React.useEffect(() => {
-    const login = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUsuario(user);
-      } else {
-        setUsuario(null);
-        setCart([]);
-        setTotal("0.00");
-      }
-      setLoading(false);
-    });
-    return () => login();
-  }, []);
+    if (!usuario) {
+      setCart([]);
+      setTotal("0.00");
+    }
+  }, [usuario]);
 
   React.useEffect(() => {
     localStorage.setItem("cartOrby", JSON.stringify(cart));
@@ -113,17 +92,6 @@ export const UiContextProvider = ({ children }: PropsWithChildren) => {
     totalResultCart(newCart);
   }
 
-  async function handleLogout() {
-    try {
-      await signOut(auth);
-      navigate("/login");
-      setCart([]);
-      setTotal("0.00");
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
   function removeItemCart(product: cartProps) {
     const indexItem = cart.findIndex(
       (item) => item.id === product.id && item.size === product.size,
@@ -160,32 +128,27 @@ export const UiContextProvider = ({ children }: PropsWithChildren) => {
   }
 
   return (
-    <ContextUi.Provider
+    <CartContextUi.Provider
       value={{
-        handleOpenModal,
-        selectedProduct,
-        modal,
-        setSelectedProduct,
-        loading,
-        search,
-        setSearch,
         cart,
         setCart,
         cartAmount: cart.length,
-        addItemCart,
         total,
+        addItemCart,
         removeItemCart,
         increaseItem,
-        usuario,
-        handleLogout,
-        setModal,
         sideCart,
         SetSideCart,
+        modal,
+        setModal,
+        selectedProduct,
+        setSelectedProduct,
+        handleOpenModal,
       }}
     >
       {children}
-    </ContextUi.Provider>
+    </CartContextUi.Provider>
   );
 };
 
-export default Context;
+export default CartContext;

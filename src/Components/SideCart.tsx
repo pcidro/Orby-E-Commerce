@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Context from "../Contextos/Context";
 import "../css/sideCart.css";
 import Cancel from "../assets/cancel.svg";
 import arrowRight from "../assets/arrowright.svg";
+import CartContext from "../Contextos/CartContext";
 
 const SideCart = () => {
   const { sideCart, SetSideCart, cart, total, increaseItem, removeItemCart } =
-    Context();
+    CartContext();
 
   React.useEffect(() => {
     if (cart.length === 0) {

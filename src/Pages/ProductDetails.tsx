@@ -6,11 +6,12 @@ import Cart from "../assets/cart.svg";
 import Context from "../Contextos/Context";
 import toast from "react-hot-toast";
 import Loader from "../Helpers/Loader";
+import CartContext from "../Contextos/CartContext";
 
 const ProductDetails = () => {
   const { id } = useParams();
   const [produto, setProduto] = useState<IProducts | null>(null);
-  const { addItemCart } = Context();
+  const { addItemCart } = CartContext();
   const navigate = useNavigate();
   const [selectedSize, setSelectedSize] = useState("");
 

@@ -9,9 +9,14 @@ import User from "../assets/user.svg";
 import arrowBotton from "../assets/chevrondown.svg";
 import pedidos from "../assets/package.svg";
 import logout from "../assets/logout.svg";
-
+import CartContext from "../Contextos/CartContext";
+import Search from "../Contextos/SearchContext";
+import Auth from "../Contextos/AuthContext";
 const Header = () => {
-  const { setSearch, cartAmount, usuario, handleLogout } = Context();
+  const { usuario, handleLogout } = Auth();
+  const { cartAmount } = CartContext();
+  const { setSearch } = Search();
+
   const [inputValue, setInputValue] = useState("");
   const [menuAberto, setMenuAberto] = useState(false);
   const [searchMobileAberto, setSearchMobileAberto] = useState(false);

@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
 import "../css/carrinho.css";
-import Context from "../Contextos/Context";
 import { Link } from "react-router-dom";
 import arrowRight from "../assets/arrowright.svg";
+import CartContext from "../Contextos/CartContext";
 
 const Carrinho = () => {
-  const { cart, total, increaseItem, removeItemCart } = Context();
+  const { cart, total, increaseItem, removeItemCart } = CartContext();
 
   return (
     <div className="container-carrinho">

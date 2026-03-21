@@ -6,10 +6,10 @@ import "./checkoutpagamento.css";
 import qrCodeFake from "../../assets/qrcodefake.svg";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import Context from "../../Contextos/Context";
 import Orders from "../../Contextos/OrderContext";
+import CartContext from "../../Contextos/CartContext";
 const CheckoutPagamento = () => {
-  const { cart, total, setCart } = Context();
+  const { cart, total, setCart } = CartContext();
   const { saveOrder } = Orders();
   const [cardData, setCardData] = useState({
     number: "",

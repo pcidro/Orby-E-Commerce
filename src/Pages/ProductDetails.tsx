@@ -3,7 +3,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import type { IProducts, IApiResponse } from "../Types";
 import "../css/productdetails.css";
 import Cart from "../assets/cart.svg";
-import Context from "../Contextos/Context";
 import toast from "react-hot-toast";
 import Loader from "../Helpers/Loader";
 import CartContext from "../Contextos/CartContext";

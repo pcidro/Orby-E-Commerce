@@ -3,15 +3,15 @@ import { Link, useSearchParams } from "react-router-dom";
 import type { IProducts } from "../Types";
 import type { IApiResponse } from "../Types";
 import Cart from "../assets/cart.svg";
-import Context from "../Contextos/Context";
 import arrowRight from "../assets/arrowright.svg";
 import SizeModal from "../Components/SizeModal";
+import CartContext from "../Contextos/CartContext";
 
 const Search = () => {
   const [searchParams] = useSearchParams();
   const [produtos, setProdutos] = useState<IProducts[]>([]);
   const query = searchParams.get("q");
-  const { modal, handleOpenModal, setModal, selectedProduct } = Context();
+  const { modal, handleOpenModal, setModal, selectedProduct } = CartContext();
 
   function handleAddCart(produtoclicado: IProducts) {
     handleOpenModal(produtoclicado);

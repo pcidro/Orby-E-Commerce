@@ -4,16 +4,16 @@ import "./loginform.css";
 import { auth, provider } from "../../firebase";
 import GoogleIcon from "../../assets/google.svg";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import Context from "../../Contextos/Context";
 import Loader from "../../Helpers/Loader";
 import "../../Helpers/erro.css";
+import Auth from "../../Contextos/AuthContext";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const navigate = useNavigate();
   const [isAuthenticating, setIsAuthenticating] = useState(false);
-  const { loading, usuario } = Context();
+  const { loading, usuario } = Auth();
   const [erro, setErro] = useState<string | null>(null);
 
   const handleFirebaseError = (code: string) => {

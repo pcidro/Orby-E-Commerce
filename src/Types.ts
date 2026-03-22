@@ -15,6 +15,22 @@ export interface IProducts {
   releaseYear: number;
 }
 
+interface itemsOrder {
+  tota: number;
+  shippingInformation: string;
+  title: string;
+  size: number;
+  releaseyear: number;
+}
+
+export interface orderProps {
+  date: string;
+  id: string;
+  items: itemsOrder[];
+  total: string;
+  userId: string;
+}
+
 export interface cartProps {
   id: number;
   title: string;

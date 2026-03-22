@@ -1,11 +1,13 @@
-import React, { useEffect } from "react";
-import Orders from "../Contextos/OrderContext";
+import { useState } from "react";
+import { Orders, type IOrder } from "../Contextos/OrderContext";
+
 import "../css/pedidos.css";
 import { Link } from "react-router-dom";
+import CancelModal from "../Components/CancelModal";
 
 const Pedidos = () => {
   const { orders } = Orders();
-
+  const [selectedOrder, setSelectedOrder] = useState<IOrder | null>(null);
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return new Intl.DateTimeFormat("pt-BR", {
@@ -65,18 +67,33 @@ const Pedidos = () => {
                           {item.title}
                         </Link>
 
-                        <Link
-                          to={`/produto/${item.id}`}
-                          className="btn-comprar-novamente"
-                        >
-                          Comprar novamente
-                        </Link>
+                        <div className="orders-btn-action">
+                          <Link
+                            to={`/produto/${item.id}`}
+                            className="btn-comprar-novamente"
+                          >
+                            Comprar novamente
+                          </Link>
+
+                          <button
+                            onClick={() => setSelectedOrder(order)}
+                            className="cancel-order"
+                          >
+                            Cancelar Pedido
+                          </button>
+                        </div>
                       </div>
                     </div>
                   ))}
                 </div>
               </article>
             ))}
+            {selectedOrder && (
+              <CancelModal
+                order={selectedOrder}
+                onClose={() => setSelectedOrder(null)}
+              />
+            )}
           </div>
         </>
       )}

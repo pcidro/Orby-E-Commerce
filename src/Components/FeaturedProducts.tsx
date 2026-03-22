@@ -17,6 +17,7 @@ const FeaturedProducts = ({
   function handleAddCart(produtoclicado: IProducts) {
     handleOpenModal(produtoclicado);
   }
+
   const { modal, setModal, selectedProduct, handleOpenModal } = CartContext();
   return (
     <div ref={ProductsRef} className="container">

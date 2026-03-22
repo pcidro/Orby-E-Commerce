@@ -14,32 +14,36 @@ import {
   query,
   where,
   orderBy,
+  deleteDoc,
+  doc,
 } from "firebase/firestore";
 import toast from "react-hot-toast";
-interface Order {
+export interface IOrder {
   id: string;
   items: cartProps[];
   total: string;
   date: string;
+  userId: string;
 }
 
 interface OrderContextData {
-  orders: Order[];
+  orders: IOrder[];
   saveOrder: (items: cartProps[], total: string) => Promise<void>;
+  removeOrder: (id: string) => Promise<void>;
   isNewOrder: boolean;
   setIsNewOrder: (value: boolean) => void;
 }
 
 const OrderContext = createContext<OrderContextData | null>(null);
 
-export const Orders = () => {
+const Orders = () => {
   const context = useContext(OrderContext);
   if (!context) throw new Error("useOrders deve estar dentro do OrderProvider");
   return context;
 };
 
-export const OrderProvider = ({ children }: PropsWithChildren) => {
-  const [orders, setOrders] = useState<Order[]>([]);
+const OrderProvider = ({ children }: PropsWithChildren) => {
+  const [orders, setOrders] = useState<IOrder[]>([]);
   const [isNewOrder, setIsNewOrder] = useState(false);
   const user = auth.currentUser;
 
@@ -57,8 +61,8 @@ export const OrderProvider = ({ children }: PropsWithChildren) => {
             const querySnapshot = await getDocs(q);
             const loadedOrders = querySnapshot.docs.map((doc) => ({
               id: doc.id,
-              ...(doc.data() as Omit<Order, "id">),
-            })) as Order[];
+              ...(doc.data() as Omit<IOrder, "id">),
+            })) as IOrder[];
 
             setOrders(loadedOrders);
           } catch (err) {
@@ -90,7 +94,7 @@ export const OrderProvider = ({ children }: PropsWithChildren) => {
         date: new Date().toISOString(),
       };
       const docRef = await addDoc(collection(db, "orders"), newOrderData);
-      const newOrder: Order = {
+      const newOrder: IOrder = {
         id: docRef.id,
         ...newOrderData,
       };
@@ -102,13 +106,26 @@ export const OrderProvider = ({ children }: PropsWithChildren) => {
     }
   }
 
+  async function removeOrder(id: string) {
+    try {
+      await deleteDoc(doc(db, "orders", id));
+
+      setOrders((prev) => prev.filter((order) => order.id !== id));
+
+      toast.success("Pedido cancelado!");
+    } catch (error) {
+      console.error("Erro ao remover pedido:", error);
+      toast.error("Erro ao remover pedido.");
+    }
+  }
+
   return (
     <OrderContext.Provider
-      value={{ orders, saveOrder, isNewOrder, setIsNewOrder }}
+      value={{ orders, saveOrder, isNewOrder, setIsNewOrder, removeOrder }}
     >
       {children}
     </OrderContext.Provider>
   );
 };
 
-export default Orders;
+export { Orders, OrderProvider };

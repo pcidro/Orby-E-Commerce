@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import CreditCard from "./CreditCard";
 import creditImg from "../../assets/creditcard.svg";
 import Pix from "../../assets/pix.svg";
@@ -6,7 +6,7 @@ import "./checkoutpagamento.css";
 import qrCodeFake from "../../assets/qrcodefake.svg";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import Orders from "../../Contextos/OrderContext";
+import { Orders } from "../../Contextos/OrderContext";
 import CartContext from "../../Contextos/CartContext";
 const CheckoutPagamento = () => {
   const { cart, total, setCart } = CartContext();

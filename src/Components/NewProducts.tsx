@@ -36,7 +36,7 @@ const NewProducts = ({ newProductsArray }: InewProducts) => {
                 <div className="product-info">
                   <div className="price-container-brand">
                     {isNike && (
-                      <span className="price-old">${produto.price + 70}</span>
+                      <span className="price-old">R${produto.price + 70}</span>
                     )}
                     <span className="price">${produto.price}</span>
                   </div>

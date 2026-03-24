@@ -42,7 +42,7 @@ const FeaturedProducts = ({
                     {isNike && (
                       <span className="price-old">${produto.price + 70}</span>
                     )}
-                    <span className="price">${produto.price}</span>
+                    <span className="price">R${produto.price}</span>
                   </div>
                 </div>
               </div>

@@ -53,7 +53,7 @@ const BrandPage = () => {
               <div className="product-info">
                 {isNike ? (
                   <div className="price-container">
-                    <span className="price-old">${produto.price + 70}</span>
+                    <span className="price-old">R${produto.price + 70}</span>
 
                     <span className="price">${produto.price}</span>
                   </div>

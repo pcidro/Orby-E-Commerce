@@ -60,7 +60,7 @@ const Search = () => {
                     {isNike && (
                       <span className="price-old">R${produto.price + 70}</span>
                     )}
-                    <span className="price">${produto.price}</span>
+                    <span className="price">R${produto.price}</span>
                   </div>
                 </div>
               </div>

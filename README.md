@@ -37,7 +37,7 @@ Criei esse projeto com foco em estudo, tentando simular um cenário real onde al
 
 ### Carrinho
 
-![Carrinho Lateral](.github/screenshots/carrrinholateral.jpg)
+![Carrinho Lateral](.github/screenshots/carrinholateral.jpg)
 
 - Adicionar e remover produtos
 - Controle de quantidade (+ / -)

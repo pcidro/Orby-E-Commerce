@@ -29,7 +29,7 @@ Criei esse projeto com foco em estudo, tentando simular um cenário real onde al
 ### Autenticação
 
 - Cadastro e login de usuários via Firebase
-  ![Área de Produtos](.github/screenshots/login.jpg)
+  ![Login](./screenshots/login.jpg)
 
 ### Rotas protegidas
 
@@ -37,14 +37,14 @@ Criei esse projeto com foco em estudo, tentando simular um cenário real onde al
 
 ### Carrinho
 
-![Carrinho Lateral](.github/screenshots/carrinholateral.jpg)
+![Carrinho Lateral](./screenshots/carrinholateral.jpg)
 
 - Adicionar e remover produtos
 - Controle de quantidade (+ / -)
 - Persistência com **Local Storage**
 - Interface com carrinho fixo e lateral
 
-![Carrinho Fixo](.github/screenshots/carrinhofixo.jpg)
+![Carrinho Fixo](./screenshots/carrinhofixo.jpg)
 
 ### Produtos
 
@@ -53,6 +53,8 @@ Criei esse projeto com foco em estudo, tentando simular um cenário real onde al
 - Filtro por marca
 - Sistema de busca em tempo real
 
+![Produtos](./screenshots/produtos.jpg)
+
 ### Pedidos
 
 - Histórico completo em **"Meus Pedidos"**
@@ -60,7 +62,7 @@ Criei esse projeto com foco em estudo, tentando simular um cenário real onde al
 - Cancelar pedido
 - Comprar novamente
 
----
+![Produtos](./screenshots/pedidos.jpg)
 
 ## Organização (Context API)
 

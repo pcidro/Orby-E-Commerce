@@ -12,7 +12,7 @@ Criei esse projeto com foco em estudo, tentando simular um cenário real onde al
 
 ---
 
-![Hero do site](.github/screenshots/herosite.jpg)
+![Hero do site](./screenshots/herosite.jpg)
 
 ## Tecnologias
 

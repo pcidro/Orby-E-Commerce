@@ -110,61 +110,65 @@ const Header = () => {
             </div>
           )}
         </div>
-        {usuario ? (
-          <div ref={menuRef} className="user-menu-container">
-            <div
-              onClick={toggleMenu}
-              className={`header-info ${menuAberto ? "active" : ""}`}
-            >
-              <img src={User} alt="" />
-              <p>
-                Olá,{" "}
-                {usuario.displayName ||
-                  usuario.email?.split("@")[0] ||
-                  "Usuário"}
-                !
-              </p>
-              <img
-                className={`arrow-icon ${menuAberto ? "open" : ""}`}
-                src={arrowBotton}
-                alt=""
-              />
-            </div>
-            {menuAberto && (
-              <div className="profile-dropdown">
-                <Link
-                  to="/pedidos"
-                  onClick={() => setMenuAberto(false)}
-                  className="dropdown-item"
-                >
-                  <img src={pedidos} alt="" />
-                  Meus Pedidos
-                </Link>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleLogout();
-                    setMenuAberto(false);
-                  }}
-                  className="logout-item"
-                >
-                  <img src={logout} alt="" />
-                  Sair
-                </button>
+        <div className="header-actions">
+          {usuario ? (
+            <div ref={menuRef} className="user-menu-container">
+              <div
+                onClick={toggleMenu}
+                className={`header-info ${menuAberto ? "active" : ""}`}
+              >
+                <img src={User} alt="" />
+                <p>
+                  Olá,{" "}
+                  {usuario.displayName ||
+                    usuario.email?.split("@")[0] ||
+                    "Usuário"}
+                  !
+                </p>
+                <img
+                  className={`arrow-icon ${menuAberto ? "open" : ""}`}
+                  src={arrowBotton}
+                  alt=""
+                />
               </div>
-            )}
-          </div>
-        ) : (
-          <Link to="/login" className="user-header-login">
-            <img src={User} />
-            Entrar
-          </Link>
-        )}
+              {menuAberto && (
+                <div className="profile-dropdown">
+                  <Link
+                    to="/pedidos"
+                    onClick={() => setMenuAberto(false)}
+                    className="dropdown-item"
+                  >
+                    <img src={pedidos} alt="" />
+                    Meus Pedidos
+                  </Link>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleLogout();
+                      setMenuAberto(false);
+                    }}
+                    className="logout-item"
+                  >
+                    <img src={logout} alt="" />
+                    Sair
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <Link to="/login" className="user-header-login">
+              <img src={User} />
+              Entrar
+            </Link>
+          )}
 
-        <Link className="carrinho-link" to="/carrinho">
-          <img className="cart" src={Cart} />
-          {cartAmount > 0 && <span className="number-cart">{cartAmount}</span>}
-        </Link>
+          <Link className="carrinho-link" to="/carrinho">
+            <img className="cart" src={Cart} />
+            {cartAmount > 0 && (
+              <span className="number-cart">{cartAmount}</span>
+            )}
+          </Link>
+        </div>
       </header>
     </div>
   );

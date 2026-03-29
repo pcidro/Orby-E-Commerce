@@ -12,6 +12,8 @@ Criei esse projeto com foco em estudo, tentando simular um cenário real onde al
 
 ---
 
+![Hero do site](.github/screenshots/herosite.jpg)
+
 ## Tecnologias
 
 - **React + TypeScript**
@@ -27,6 +29,7 @@ Criei esse projeto com foco em estudo, tentando simular um cenário real onde al
 ### Autenticação
 
 - Cadastro e login de usuários via Firebase
+  ![Área de Produtos](.github/screenshots/login.jpg)
 
 ### Rotas protegidas
 
@@ -34,10 +37,14 @@ Criei esse projeto com foco em estudo, tentando simular um cenário real onde al
 
 ### Carrinho
 
+![Carrinho Lateral](.github/screenshots/carrrinholateral.jpg)
+
 - Adicionar e remover produtos
 - Controle de quantidade (+ / -)
 - Persistência com **Local Storage**
 - Interface com carrinho fixo e lateral
+
+![Carrinho Fixo](.github/screenshots/carrinhofixo.jpg)
 
 ### Produtos
 

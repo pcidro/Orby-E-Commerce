@@ -29,8 +29,6 @@
   height: 34px;
   object-fit: contain;
   background: transparent;
-  padding: 0;
-  border-radius: 0;
 }
 
 .input-wrapper {
@@ -72,6 +70,12 @@
   transition: all 0.2s ease;
   padding: 8px 12px;
   border-radius: 8px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .profile-dropdown {
@@ -334,6 +338,10 @@
 @media (max-width: 768px) {
   .input-wrapper {
     display: none;
+  }
+
+  .header-actions {
+    gap: 4px;
   }
 
   .search-mobile-container {

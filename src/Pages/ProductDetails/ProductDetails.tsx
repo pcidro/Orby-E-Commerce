@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import type { IProducts, IApiResponse } from "../Types";
-import "../css/productdetails.css";
-import Cart from "../assets/cart.svg";
+import type { IProducts, IApiResponse } from "../../Types";
+import "./productdetails.css";
+import Cart from "../../assets/cart.svg";
 import toast from "react-hot-toast";
-import Loader from "../Helpers/Loader";
-import CartContext from "../Contextos/CartContext";
+import Loader from "../../Helpers/Loader";
+import CartContext from "../../Contextos/CartContext";
 
 const ProductDetails = () => {
   const { id } = useParams();

@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Orders, type IOrder } from "../Contextos/OrderContext";
+import { Orders, type IOrder } from "../../Contextos/OrderContext";
 
-import "../css/pedidos.css";
+import "./pedidos.css";
 import { Link } from "react-router-dom";
-import CancelModal from "../Components/CancelModal";
+import CancelModal from "../../Components/CancelModal/CancelModal";
 
 const Pedidos = () => {
   const { orders } = Orders();

@@ -1,7 +1,7 @@
 import toast from "react-hot-toast";
-import { Orders } from "../Contextos/OrderContext";
-import { type IOrder } from "../Contextos/OrderContext";
-import "../css/cancelmodal.css";
+import { Orders } from "../../Contextos/OrderContext";
+import { type IOrder } from "../../Contextos/OrderContext";
+import "./cancelmodal.css";
 interface IcancelModal {
   onClose: () => void;
   order: IOrder;

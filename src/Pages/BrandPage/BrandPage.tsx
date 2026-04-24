@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Cart from "../assets/cart.svg";
+import Cart from "../../assets/cart.svg";
 import { Link } from "react-router-dom";
-import arrowRight from "../assets/arrowright.svg";
-import "../css/brandpage.css";
-import type { IProducts, IApiResponse } from "../Types";
-import SizeModal from "../Components/SizeModal";
-import CartContext from "../Contextos/CartContext";
+import arrowRight from "../../assets/arrowright.svg";
+import "./brandpage.css";
+import type { IProducts, IApiResponse } from "../../Types";
+import SizeModal from "../../Components/SizeModal/SizeModal";
+import CartContext from "../../Contextos/CartContext";
 
 const BrandPage = () => {
   const [produtos, setProdutos] = useState<IProducts[]>([]);

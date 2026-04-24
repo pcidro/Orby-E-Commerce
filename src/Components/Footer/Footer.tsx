@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
-import "../css/footer.css";
-import orbyBlack from "../assets/orbyblack.png";
-import appleStore from "../assets/applestore.svg";
-import GooglePlay from "../assets/googleplay.svg";
-import Auth from "../Contextos/AuthContext";
+import "./footer.css";
+import orbyBlack from "../../assets/orbyblack.png";
+import appleStore from "../../assets/applestore.svg";
+import GooglePlay from "../../assets/googleplay.svg";
+import Auth from "../../Contextos/AuthContext";
 
 const Footer = () => {
   const { usuario } = Auth();

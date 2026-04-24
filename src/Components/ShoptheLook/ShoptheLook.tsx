@@ -1,11 +1,11 @@
 import React from "react";
-import "../css/shopthelook.css";
-import shoptheLook1 from "../assets/shopthelook1.jpg";
-import Instagram from "../assets/instagram.svg";
+import "./shopthelook.css";
+import shoptheLook1 from "../../assets/shopthelook1.jpg";
+import Instagram from "../../assets/instagram.svg";
 import { Link } from "react-router-dom";
-import shoptheLook2 from "../assets/shopthelook2.jpg";
-import shoptheLook3 from "../assets/shopthelook3.jpg";
-import shoptheLook4 from "../assets/shopthelook4.jpg";
+import shoptheLook2 from "../../assets/shopthelook2.jpg";
+import shoptheLook3 from "../../assets/shopthelook3.jpg";
+import shoptheLook4 from "../../assets/shopthelook4.jpg";
 
 const ShoptheLook = () => {
   return (

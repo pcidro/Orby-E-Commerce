@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
-import type { IProducts } from "../Types";
+import type { IProducts } from "../../Types";
 
-import Cart from "../assets/cart2.svg";
+import Cart from "../../assets/cart2.svg";
 import toast from "react-hot-toast";
-import "../css/sizeModal.css";
-import Cancel from "../assets/cancel.svg";
-import CartContext from "../Contextos/CartContext";
+import "./sizeModal.css";
+import Cancel from "../../assets/cancel.svg";
+import CartContext from "../../Contextos/CartContext";
 
 interface Imodal {
   product: IProducts;

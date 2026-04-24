@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
-import type { IProducts } from "../Types";
-import type { IApiResponse } from "../Types";
-import Cart from "../assets/cart.svg";
-import arrowRight from "../assets/arrowright.svg";
-import SizeModal from "../Components/SizeModal";
-import CartContext from "../Contextos/CartContext";
+import type { IProducts } from "../../Types";
+import type { IApiResponse } from "../../Types";
+import Cart from "../../assets/cart.svg";
+import arrowRight from "../../assets/arrowright.svg";
+import SizeModal from "../../Components/SizeModal/SizeModal";
+import CartContext from "../../Contextos/CartContext";
 
 const Search = () => {
   const [searchParams] = useSearchParams();

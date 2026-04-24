@@ -1,16 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
-import Orby from "../assets/Orbylogo.png";
-import "../css/header.css";
-import Cart from "../assets/cart2.svg";
-import searchIcon from "../assets/search.svg";
+import Orby from "../../assets/Orbylogo.png";
+import "./header.css";
+import Cart from "../../assets/cart2.svg";
+import searchIcon from "../../assets/search.svg";
 import { Link, useNavigate } from "react-router-dom";
-import User from "../assets/user.svg";
-import arrowBotton from "../assets/chevrondown.svg";
-import pedidos from "../assets/package.svg";
-import logout from "../assets/logout.svg";
-import CartContext from "../Contextos/CartContext";
-import Search from "../Contextos/SearchContext";
-import Auth from "../Contextos/AuthContext";
+import User from "../../assets/user.svg";
+import arrowBotton from "../../assets/chevrondown.svg";
+import pedidos from "../../assets/package.svg";
+import logout from "../../assets/logout.svg";
+import CartContext from "../../Contextos/CartContext";
+import Search from "../../Contextos/SearchContext";
+import Auth from "../../Contextos/AuthContext";
 const Header = () => {
   const { usuario, handleLogout } = Auth();
   const { cartAmount } = CartContext();

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Orders } from "../Contextos/OrderContext";
-import "../css/finishorder.css";
+import { Orders } from "../../Contextos/OrderContext";
+import "./finishorder.css";
 
 const FinishOrder = () => {
   const { orders, setIsNewOrder, isNewOrder } = Orders();

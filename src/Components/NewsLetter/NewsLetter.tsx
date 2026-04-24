@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
-import "../css/newsletter.css";
+import "./newsletter.css";
 
 const Newsletter = () => {
   const [email, setEmail] = useState("");

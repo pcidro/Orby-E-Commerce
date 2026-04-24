@@ -1,7 +1,7 @@
-import "../css/carrinho.css";
+import "./carrinho.css";
 import { Link } from "react-router-dom";
-import arrowRight from "../assets/arrowright.svg";
-import CartContext from "../Contextos/CartContext";
+import arrowRight from "../../assets/arrowright.svg";
+import CartContext from "../../Contextos/CartContext";
 
 const Carrinho = () => {
   const { cart, total, increaseItem, removeItemCart } = CartContext();

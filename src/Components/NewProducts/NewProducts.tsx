@@ -1,10 +1,10 @@
 import React from "react";
-import arrowRight from "../assets/arrowright.svg";
-import type { IProducts } from "../Types";
-import Cart from "../assets/cart.svg";
+import arrowRight from "../../assets/arrowright.svg";
+import type { IProducts } from "../../Types";
+import Cart from "../../assets/cart.svg";
 import { Link } from "react-router-dom";
-import SizeModal from "./SizeModal";
-import CartContext from "../Contextos/CartContext";
+import SizeModal from "../SizeModal/SizeModal";
+import CartContext from "../../Contextos/CartContext";
 
 interface InewProducts {
   newProductsArray: IProducts[];

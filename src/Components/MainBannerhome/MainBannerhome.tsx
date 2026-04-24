@@ -1,6 +1,6 @@
 import React from "react";
 
-import "../css/mainbanner.css";
+import "./mainbanner.css";
 import { Link } from "react-router-dom";
 
 const MainBannerhome = () => {

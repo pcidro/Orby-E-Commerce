@@ -1,12 +1,12 @@
 import RoutePage from "./RoutePage";
 import { HashRouter } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
-import "./css/App.css";
+import "./App.css";
 import { OrderProvider } from "./Contextos/OrderContext";
-import ScrollToTop from "./Components/ScroltoTop";
 import { AuthProvider } from "./Contextos/AuthContext";
 import { CartProvider } from "./Contextos/CartContext";
 import { SearchProvider } from "./Contextos/SearchContext";
+import ScrollToTop from "./Components/ScrollToTop/ScrollToTop";
 
 const App = () => {
   return (

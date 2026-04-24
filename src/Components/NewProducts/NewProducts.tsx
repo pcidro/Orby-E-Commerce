@@ -1,36 +1,32 @@
 import React from "react";
-import arrowRight from "../assets/arrowright.svg";
-import type { IProducts } from "../Types";
-import Cart from "../assets/cart.svg";
+import arrowRight from "../../assets/arrowright.svg";
+import type { IProducts } from "../../Types";
+import Cart from "../../assets/cart.svg";
 import { Link } from "react-router-dom";
-import SizeModal from "./SizeModal";
-import CartContext from "../Contextos/CartContext";
-interface IFeaturedProjects {
-  featuredProductsArray: IProducts[];
-  ProductsRef: React.RefObject<HTMLDivElement | null>;
+import SizeModal from "../SizeModal/SizeModal";
+import CartContext from "../../Contextos/CartContext";
+
+interface InewProducts {
+  newProductsArray: IProducts[];
 }
 
-const FeaturedProducts = ({
-  featuredProductsArray,
-  ProductsRef,
-}: IFeaturedProjects) => {
+const NewProducts = ({ newProductsArray }: InewProducts) => {
   function handleAddCart(produtoclicado: IProducts) {
     handleOpenModal(produtoclicado);
   }
 
   const { modal, setModal, selectedProduct, handleOpenModal } = CartContext();
+
   return (
-    <div ref={ProductsRef} className="container">
-      <h1 className="main-title">Produtos em destaque</h1>
+    <div className="container">
+      <h1 className="main-title">Novas Chegadas</h1>
       <ul className="products-container">
-        {featuredProductsArray.map((produto) => {
+        {newProductsArray.map((produto) => {
           const isNike = produto.brand.toLowerCase().trim() === "nike";
           return (
             <li className="product" key={produto.id}>
-              <Link to={`/produto/${produto.id}`}>
-                {isNike && <span className="discount-badge">-50% OFF</span>}
-                <img src={produto.image} alt={produto.title} />
-              </Link>
+              {isNike && <span className="discount-badge">-50% OFF</span>}
+              <img src={produto.image} alt={produto.title} />
               <span className="category">
                 {produto.category.replace("-", " ")}
               </span>
@@ -40,7 +36,7 @@ const FeaturedProducts = ({
                 <div className="product-info">
                   <div className="price-container-brand">
                     {isNike && (
-                      <span className="price-old">${produto.price + 70}</span>
+                      <span className="price-old">R${produto.price + 70}</span>
                     )}
                     <span className="price">R${produto.price}</span>
                   </div>
@@ -70,4 +66,4 @@ const FeaturedProducts = ({
   );
 };
 
-export default FeaturedProducts;
+export default NewProducts;

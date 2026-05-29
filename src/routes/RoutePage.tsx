@@ -1,16 +1,16 @@
 import { Routes, Route } from "react-router-dom";
 import Header from "../components/layout/Header/Header";
-import Home from "../Pages/Home/Home";
-import Carrinho from "../Pages/Carrinho/Carrinho";
-import Login from "../Pages/Login/Login";
-import ProductDetails from "../Pages/ProductDetails/ProductDetails";
+import Home from "../pages/Home/Home";
+import Carrinho from "../pages/Carrinho/Carrinho";
+import Login from "../pages/Login/Login";
+import ProductDetails from "../pages/ProductDetails/ProductDetails";
 import Footer from "../components/layout/Footer/Footer";
-import BrandPage from "../Pages/BrandPage/BrandPage";
-import Checkout from "../Pages/Checkout/Checkout";
-import Search from "../Pages/Search/Search";
+import BrandPage from "../pages/BrandPage/BrandPage";
+import Checkout from "../pages/Checkout/Checkout";
+import Search from "../pages/Search/Search";
 import ProtectedRoute from "./ProtectedRoute";
-import FinishOrder from "../Pages/FinishOrder/FinishOrder";
-import Pedidos from "../Pages/Pedidos/Pedidos";
+import FinishOrder from "../pages/FinishOrder/FinishOrder";
+import Pedidos from "../pages/Pedidos/Pedidos";
 import SideCart from "../components/cart/SideCart/SideCart";
 
 const RoutePage = () => {

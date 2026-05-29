@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import "./loginform.css";
-import { auth, provider } from "../../firebase";
-import GoogleIcon from "../../assets/google.svg";
+import { auth, provider } from "../../services/firebase";
+import GoogleIcon from "../../assets/icons/google.svg";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import Loader from "../../Helpers/Loader";
-import "../../Helpers/erro.css";
-import Auth from "../../Contextos/AuthContext";
+import Loader from "../../components/ui/Loader";
+import "../../components/ui/erro.css";
+import Auth from "../../contexts/AuthContext";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");

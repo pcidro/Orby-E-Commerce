@@ -1,13 +1,13 @@
 import { useState } from "react";
 import CreditCard from "./CreditCard";
-import creditImg from "../../assets/creditcard.svg";
-import Pix from "../../assets/pix.svg";
+import creditImg from "../../assets/icons/creditcard.svg";
+import Pix from "../../assets/icons/pix.svg";
 import "./checkoutpagamento.css";
-import qrCodeFake from "../../assets/qrcodefake.svg";
+import qrCodeFake from "../../assets/icons/qrcodefake.svg";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { Orders } from "../../Contextos/OrderContext";
-import CartContext from "../../Contextos/CartContext";
+import { Orders } from "../../contexts/OrderContext";
+import CartContext from "../../contexts/CartContext";
 const CheckoutPagamento = () => {
   const { cart, total, setCart } = CartContext();
   const { saveOrder } = Orders();

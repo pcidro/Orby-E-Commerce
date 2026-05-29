@@ -3,9 +3,9 @@ import CheckoutForm from "./CheckoutForm";
 import CheckoutPagamento from "./CheckoutPagamento";
 import "./checkout.css";
 import toast from "react-hot-toast";
-import type { FormData } from "../../Types";
-import Auth from "../../Contextos/AuthContext";
-import CartContext from "../../Contextos/CartContext";
+import type { FormData } from "../../types";
+import Auth from "../../contexts/AuthContext";
+import CartContext from "../../contexts/CartContext";
 
 const Checkout = () => {
   const { usuario } = Auth();

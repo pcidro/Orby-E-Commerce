@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./loginform.css";
-import { auth, provider } from "../../firebase";
+import { auth, provider } from "../../services/firebase";
 import {
   signInWithPopup,
   createUserWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
-import GoogleIcon from "../../assets/google.svg";
+import GoogleIcon from "../../assets/icons/google.svg";
 
 const LoginCreate = () => {
   const [email, setEmail] = useState("");

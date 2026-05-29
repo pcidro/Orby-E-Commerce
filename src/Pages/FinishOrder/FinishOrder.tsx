@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Orders } from "../../Contextos/OrderContext";
+import { Orders } from "../../contexts/OrderContext";
 import "./finishorder.css";
 
 const FinishOrder = () => {

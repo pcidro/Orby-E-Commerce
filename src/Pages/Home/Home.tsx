@@ -1,17 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
-import type { IProducts } from "../../Types";
-import type { IApiResponse } from "../../Types";
+import type { IProducts } from "../../types";
+import type { IApiResponse } from "../../types";
 import "./home.css";
-import Hero from "../../Components/Hero/Hero";
-import Perks from "../../Components/Perks/Perks";
-import MainBannerhome from "../../Components/MainBannerhome/MainBannerhome";
-import ShopBy from "../../Components/ShopBy/ShopBy";
-import FeaturedProducts from "../../Components/FeaturedProducts/FeaturedProducts";
-import NewProducts from "../../Components/NewProducts/NewProducts";
-import SizeModal from "../../Components/SizeModal/SizeModal";
-import ShoptheLook from "../../Components/ShoptheLook/ShoptheLook";
-import CartContext from "../../Contextos/CartContext";
-import Newsletter from "../../Components/NewsLetter/NewsLetter";
+import Hero from "../../components/home/Hero/Hero";
+import Perks from "../../components/home/Perks/Perks";
+import MainBannerhome from "../../components/home/MainBannerhome/MainBannerhome";
+import ShopBy from "../../components/home/ShopBy/ShopBy";
+import FeaturedProducts from "../../components/home/FeaturedProducts/FeaturedProducts";
+import NewProducts from "../../components/home/NewProducts/NewProducts";
+import SizeModal from "../../components/cart/SizeModal/SizeModal";
+import ShoptheLook from "../../components/home/ShoptheLook/ShoptheLook";
+import CartContext from "../../contexts/CartContext";
+import Newsletter from "../../components/home/NewsLetter/NewsLetter";
 
 const Home = () => {
   const [produtos, setProdutos] = useState<IProducts[] | []>([]);

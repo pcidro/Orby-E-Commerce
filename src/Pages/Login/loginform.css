@@ -9,7 +9,7 @@
 .login-container::before {
   display: block;
   content: "";
-  background: url("../../assets/hero.jpg") no-repeat center center;
+  background: url("../../assets/images/hero.jpg") no-repeat center center;
   background-size: cover;
 }
 

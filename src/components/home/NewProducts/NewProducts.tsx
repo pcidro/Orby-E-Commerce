@@ -1,49 +1,27 @@
-import React, { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
-import type { IProducts } from "../../types";
-import type { IApiResponse } from "../../types";
-import Cart from "../../assets/icons/cart.svg";
-import arrowRight from "../../assets/icons/arrowright.svg";
-import SizeModal from "../../components/cart/SizeModal/SizeModal";
-import CartContext from "../../contexts/CartContext";
+import React from "react";
+import arrowRight from "../../../assets/icons/arrowright.svg";
+import type { IProducts } from "../../../types";
+import Cart from "../../../assets/icons/cart.svg";
+import { Link } from "react-router-dom";
+import SizeModal from "../../cart/SizeModal/SizeModal";
+import CartContext from "../../../contexts/CartContext";
 
-const Search = () => {
-  const [searchParams] = useSearchParams();
-  const [produtos, setProdutos] = useState<IProducts[]>([]);
-  const query = searchParams.get("q");
-  const { modal, handleOpenModal, setModal, selectedProduct } = CartContext();
+interface InewProducts {
+  newProductsArray: IProducts[];
+}
 
+const NewProducts = ({ newProductsArray }: InewProducts) => {
   function handleAddCart(produtoclicado: IProducts) {
     handleOpenModal(produtoclicado);
   }
 
-  useEffect(() => {
-    async function getSearch() {
-      try {
-        const res = await fetch(`${import.meta.env.BASE_URL}sneakers.json`);
-        const data: IApiResponse = await res.json();
-        if (query) {
-          const filtered = data.products.filter(
-            (p) =>
-              p.title.toLowerCase().includes(query.toLowerCase()) ||
-              p.brand.toLowerCase().includes(query.toLowerCase()) ||
-              p.category.toLowerCase().includes(query.toLowerCase()),
-          );
-          setProdutos(filtered);
-        }
-      } catch (erro) {
-        console.log(erro);
-      }
-    }
-
-    getSearch();
-  }, [query]);
+  const { modal, setModal, selectedProduct, handleOpenModal } = CartContext();
 
   return (
     <div className="container">
-      <h1 className="main-title">Produtos em destaque</h1>
+      <h1 className="main-title">Novas Chegadas</h1>
       <ul className="products-container">
-        {produtos.map((produto) => {
+        {newProductsArray.map((produto) => {
           const isNike = produto.brand.toLowerCase().trim() === "nike";
           return (
             <li className="product" key={produto.id}>
@@ -80,9 +58,6 @@ const Search = () => {
             </li>
           );
         })}
-        {produtos.length === 0 && query && (
-          <p className="empty-message">Nenhum produto encontrado</p>
-        )}
       </ul>
       {modal && selectedProduct && (
         <SizeModal product={selectedProduct} onClose={() => setModal(false)} />
@@ -91,4 +66,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default NewProducts;
